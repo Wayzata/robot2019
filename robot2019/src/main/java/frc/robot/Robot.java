@@ -7,6 +7,13 @@
 
 package frc.robot;
 
+import org.opencv.imgproc.Imgproc;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.vision.VisionRunner;
+import edu.wpi.first.vision.VisionThread;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,6 +31,17 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  ///*** VISION STUFF ***///
+  private static final int IMG_WIDTH = 400;
+	private static final int IMG_HEIGHT = 400;
+  UsbCamera camera;
+  VisionThread visionThread;
+
+
+  Joystick leftJoy, rightJoy;
+  DriveTrain driveTrain;
+
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -33,6 +51,25 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
+    leftJoy = new Joystick(0);
+    rightJoy = new Joystick(1);
+    driveTrain = new DriveTrain(leftJoy, rightJoy);
+
+    camera = CameraServer.getInstance().startAutomaticCapture();
+    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+    
+    visionThread = new VisionThread(camera, new MyGripPipelineBlob(), new VisionRunner.Listener<MyGripPipelineBlob>() { 
+      @Override
+      public void copyPipelineOutputs(MyGripPipelineBlob pipeline) {
+        if (!pipeline.findBlobsOutput().empty()) {
+            //System.out.println(pipeline.findBlobsOutput().get(0, 0)[2]);
+            System.out.println(pipeline.findBlobsOutput().toString());
+            //Imgproc.boundingRect(
+        }
+      }
+    });
+    visionThread.start();
   }
 
   /**
