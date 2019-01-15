@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.cscore.UsbCamera;
@@ -40,6 +43,8 @@ public class Robot extends TimedRobot {
 
   Joystick leftJoy, rightJoy;
   DriveTrain driveTrain;
+  TalonSRX l, r;
+
 
 
   /**
@@ -48,6 +53,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    //l = new TalonSRX(ff);
+    //r = new TalonSRX(ff);
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
@@ -64,7 +71,7 @@ public class Robot extends TimedRobot {
       public void copyPipelineOutputs(MyGripPipelineBlob pipeline) {
         if (!pipeline.findBlobsOutput().empty()) {
             //System.out.println(pipeline.findBlobsOutput().get(0, 0)[2]);
-            System.out.println(pipeline.findBlobsOutput().toString());
+            System.out.println(pipeline.findBlobsOutput().get(0,0).toString());
             //Imgproc.boundingRect(
         }
       }
@@ -123,7 +130,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-  }
+    driveTrain.drive();
+   /* if(leftJoy.getRawButton(1)) {
+      l.set(ControlMode.PercentOutput, 1);
+      r.set(ControlMode.PercentOutput, -1);
+    } */
+  } 
 
   /**
    * This function is called periodically during test mode.
