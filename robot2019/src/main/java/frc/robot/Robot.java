@@ -9,7 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -39,8 +38,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    leftJoystick = new Joystick(1);
-    rightJoystick = new Joystick(2);
+    leftJoystick = new Joystick(0);
+    rightJoystick = new Joystick(1);
   }
 
   /**
@@ -96,10 +95,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-
-    driveTrain.leftMove((leftJoystick.getAxis(AxisType.kY)));
-    driveTrain.rightMove((rightJoystick.getAxis(AxisType.kY)));
-
+    driveTrain.leftMove((leftJoystick.getMagnitude()));
+    driveTrain.rightMove((rightJoystick.getMagnitude()));
   }
 
   /**

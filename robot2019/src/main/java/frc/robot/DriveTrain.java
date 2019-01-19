@@ -1,25 +1,19 @@
 package frc.robot;
-import edu.wpi.first.wpilibj.Talon;
-
-//4 motors
-// front left motors = 4
-//back left motor = 3
-// front right motor = 5
-// back right motor = 6
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class DriveTrain {
-    private Talon frontLeftMotor;
-    private Talon backLeftMotor;
-    private Talon frontRightMotor;
-    private Talon backRightMotor;
+    private TalonSRX frontLeftMotor;
+    private TalonSRX backLeftMotor;
+    private TalonSRX frontRightMotor;
+    private TalonSRX backRightMotor;
     private final double speedMultiplier = .5;
 
     public DriveTrain() {
-        frontLeftMotor = new Talon(4);
-        backLeftMotor = new Talon(3);
-        frontRightMotor = new Talon(5);
-        backRightMotor = new Talon(6);
-
+        frontLeftMotor = new TalonSRX(6);
+        backLeftMotor = new TalonSRX(3);
+        frontRightMotor = new TalonSRX(5);
+        backRightMotor = new TalonSRX(4);
     }
 
     public void leftMove(double speed) {
@@ -28,15 +22,11 @@ public class DriveTrain {
          * 
          */
         if (speed < 0) {
-
-            frontLeftMotor.set(-1 * (Math.pow(speed, 2) * speedMultiplier));
-            backLeftMotor.set(-1 * (Math.pow(speed, 2) * speedMultiplier));
-
+            frontLeftMotor.set(ControlMode.PercentOutput, -1*(Math.pow(speed, 2) * speedMultiplier));
+            backLeftMotor.set(ControlMode.PercentOutput, -1*(Math.pow(speed, 2) * speedMultiplier));
         } else {
-
-            frontLeftMotor.set(1 * (Math.pow(speed, 2) * speedMultiplier));
-            backLeftMotor.set(1 * (Math.pow(speed, 2) * speedMultiplier));
-
+            frontLeftMotor.set(ControlMode.PercentOutput, 1*(Math.pow(speed, 2) * speedMultiplier));
+            backLeftMotor.set(ControlMode.PercentOutput, 1*(Math.pow(speed, 2) * speedMultiplier));
         }
     }
 
@@ -45,15 +35,11 @@ public class DriveTrain {
          * if(speed < .05){ speed = 0; }
          */
         if (speed < 0) {
-
-            frontLeftMotor.set(-1 * (Math.pow(speed, 2) * speedMultiplier));
-            backLeftMotor.set(-1 * (Math.pow(speed, 2) * speedMultiplier));
-
+            frontRightMotor.set(ControlMode.PercentOutput, -1*(Math.pow(speed, 2) * speedMultiplier));
+            backRightMotor.set(ControlMode.PercentOutput, -1*(Math.pow(speed, 2) * speedMultiplier));
         } else {
-
-            frontLeftMotor.set(1 * (Math.pow(speed, 2) * speedMultiplier));
-            backLeftMotor.set(1 * (Math.pow(speed, 2) * speedMultiplier));
-
+            frontRightMotor.set(ControlMode.PercentOutput, 1*(Math.pow(speed, 2) * speedMultiplier));
+            backRightMotor.set(ControlMode.PercentOutput, 1*(Math.pow(speed, 2) * speedMultiplier));
         }
     }
 
