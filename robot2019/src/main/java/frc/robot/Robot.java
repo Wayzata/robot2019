@@ -95,8 +95,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    driveTrain.leftMove((leftJoystick.getMagnitude()));
-    driveTrain.rightMove((rightJoystick.getMagnitude()));
+    driveTrain.leftMove(leftJoystick.getY());
+    driveTrain.rightMove(rightJoystick.getY());
   }
 
   /**
