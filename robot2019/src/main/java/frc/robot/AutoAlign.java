@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+
 /* This class will take a direction input & a method that waits for an input to switch to watching for reflective tape.
     Then align the robot to the cargo ship/rocket autonomously.
 
@@ -16,6 +18,8 @@ public class AutoAlign {
 
     Variables var = new Variables();
     DriveTrain drive = new DriveTrain();
+    Joystick joyLeft = new Joystick(var.joyLeftPort);
+    Joystick joyRight = new Joystick(var.joyRightPort);
 
     // Variables
     String direction = "";
@@ -23,16 +27,16 @@ public class AutoAlign {
 
     public void checkDirecton() {
 
-        // If left button pressed
-        if (var.leftButton == 1) {
+        // If left button pressed on left joy
+        if (joyLeft.getRawButtonPressed(var.leftButton)) {
 
             direction.equals("left");
-            // present to dashboard
+            // Put on dashboard
 
         }
 
-        // If right button pressed
-        if (var.rightButton == 2) {
+        // If right button pressed on left joy
+        if (joyLeft.getRawButtonPressed(var.rightButton)) {
 
             direction.equals("right");
             // present to dashboard
@@ -43,8 +47,10 @@ public class AutoAlign {
 
     public void alignButton() {
 
-        // WHen pressed
-        if (var.alignButton == 3) {
+        // When left button is pressed on the right joystick
+        if (joyRight.getRawButtonPressed(var.alignButton)) {
+
+            System.out.println("Working");
 
             if (alignFlag == true) {
 
@@ -70,36 +76,44 @@ public class AutoAlign {
 
     public void checkFloorTape() {
 
+        // TODOOOOO
+
         // If light detects tape
         if (var.centerLight == 4) {
 
             // Set speeds to 0
-            drive.stop();
-            //Call Check Sensor
+            drive.drive(0, 0);
+
+            // Call Check Sensor
+
             while (direction.equals("right") && var.centerLight == 4 && alignFlag == true) {
-               //Call Check Sensor
+
+                // Call Check Sensor
+
                 if (var.alignButton == 3) {
                     alignFlag = false;
                 }
                 drive.drive(1, -1);
-                
 
             }
-            //Call Check Sensor
+            // Call Check Sensor
+
             while (direction.equals("left") && var.centerLight == 4 && alignFlag == true) {
-               //Call Check Sensor
+
+
+                // Call Check Sensor
+
                 if (var.alignButton == 3) {
                     alignFlag = false;
                 }
                 drive.drive(1, -1);
-                //Cal Check Sensor
+
+                // Call Check Sensor
 
             }
 
         }
 
     }
-
-    
 
 }

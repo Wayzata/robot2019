@@ -16,17 +16,19 @@ public class Variables {
     //Align direction buttons
     int leftButton = 1;
     int rightButton = 2;
-
-    //Align button
     int alignButton = 3;
 
     //Motors
-    double leftMotor1 = 15;
-    double leftMotor2 = 18;
-    double rightMotor1 = 16;
-    double rightMotor2 = 17;
+    double driveLimiter = 0.4;
+    double singleMotorAdj1 = 0; 
+    int leftMotor1 = 15;
+    int leftMotor2 = 18;
+    int rightMotor1 = 16;
+    int rightMotor2 = 17;
 
     //Joysticks
+    int joyLeftPort = 0;
+    int joyRightPort = 1;
 
     //Lights
     int centerLight = 4;

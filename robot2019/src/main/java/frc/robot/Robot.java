@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Joystick;
 
 
 public class Robot extends TimedRobot {
@@ -18,14 +19,18 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  AutoAlign autoAlign = new AutoAlign();
+  DriveTrain driveT = new DriveTrain();
+  Variables var = new Variables();
+
+  Joystick joyLeft = new Joystick(var.joyLeftPort);
+  Joystick joyRight = new Joystick(var.joyRightPort);
 
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-
-    AutoAlign autoAlign = new AutoAlign();
 
   }
 
@@ -60,6 +65,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+
+    driveT.tankDrive(joyLeft, joyRight);
+    autoAlign.alignButton();
+    
+
   }
 
 
