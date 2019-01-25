@@ -21,18 +21,18 @@ public class Variables {
     //Motors
     double driveLimiter = 0.4;
     double singleMotorAdj1 = 0; 
-    int leftMotor1 = 15;
-    int leftMotor2 = 18;
-    int rightMotor1 = 16;
-    int rightMotor2 = 17;
+    int fLeftMotor = 6;
+    int bLeftMotor = 3;
+    int fRightMotor = 5;
+    int bRightMotor = 4;
 
     //Joysticks
     int joyLeftPort = 0;
     int joyRightPort = 1;
 
     //Lights
-    int centerLight = 4;
-    int frontLight = 5;
+    //int centerLight = 4;
+    //int frontLight = 5;
 
     //Other crap
 

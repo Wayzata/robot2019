@@ -16,11 +16,11 @@ public class DriveTrain {
 
     Variables var = new Variables();
 
-    TalonSRX frontLeft = new TalonSRX(var.leftMotor1);
-    TalonSRX backLeft = new TalonSRX(var.leftMotor2);
+    TalonSRX frontLeft = new TalonSRX(var.fLeftMotor);
+    TalonSRX backLeft = new TalonSRX(var.bLeftMotor);
 
-    TalonSRX frontRight = new TalonSRX(var.rightMotor1);
-    TalonSRX backRight = new TalonSRX(var.rightMotor2);
+    TalonSRX frontRight = new TalonSRX(var.fRightMotor);
+    TalonSRX backRight = new TalonSRX(var.bRightMotor);
 
     /* public void stop() {
 

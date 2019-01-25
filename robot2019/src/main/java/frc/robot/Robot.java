@@ -19,7 +19,6 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  AutoAlign autoAlign = new AutoAlign();
   DriveTrain driveT = new DriveTrain();
   Variables var = new Variables();
 
@@ -38,6 +37,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+
   }
 
 
@@ -66,9 +66,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
+    //Calls drivetrain method, providing joysticks
     driveT.tankDrive(joyLeft, joyRight);
-    autoAlign.alignButton();
-    
+  
 
   }
 
