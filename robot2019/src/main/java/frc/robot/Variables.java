@@ -10,7 +10,7 @@ package frc.robot;
 /**
  * Add your docs here.
  */
-public static class Variables {
+public class Variables {
 
     
     //Align direction buttons
