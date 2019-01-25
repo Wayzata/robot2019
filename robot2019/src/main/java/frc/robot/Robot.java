@@ -7,17 +7,19 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
-
 
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  DriveTrain driveTrain = new DriveTrain();
+  Joystick leftJoystick;
+  Joystick rightJoystick;
 
   DriveTrain driveT = new DriveTrain();
   Variables var = new Variables();
@@ -31,15 +33,23 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
+    leftJoystick = new Joystick(0);
+    rightJoystick = new Joystick(1);
   }
 
-
-
+  /**
+   * This function is called every robot packet, no matter the mode. Use this for
+   * items like diagnostics that you want ran during disabled, autonomous,
+   * teleoperated and test.
+   *
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and SmartDashboard integrated updating.
+   */
   @Override
   public void robotPeriodic() {
 
   }
-
 
   @Override
   public void autonomousInit() {
@@ -52,13 +62,13 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
+    case kCustomAuto:
+      // Put custom auto code here
+      break;
+    case kDefaultAuto:
+    default:
+      // Put default auto code here
+      break;
     }
   }
 
@@ -68,7 +78,6 @@ public class Robot extends TimedRobot {
 
     //Calls drivetrain method, providing joysticks
     driveT.tankDrive(joyLeft, joyRight);
-  
 
   }
 
