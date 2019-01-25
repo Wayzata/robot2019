@@ -23,6 +23,7 @@ public class Robot extends TimedRobot {
 
   DriveTrain driveT = new DriveTrain();
   Variables var = new Variables();
+  Arm arm = new Arm();
 
   Joystick joyLeft = new Joystick(var.joyLeftPort);
   Joystick joyRight = new Joystick(var.joyRightPort);
@@ -78,6 +79,7 @@ public class Robot extends TimedRobot {
 
     //Calls drivetrain method, providing joysticks
     driveT.tankDrive(joyLeft, joyRight);
+    arm.changePosition();
 
   }
 
