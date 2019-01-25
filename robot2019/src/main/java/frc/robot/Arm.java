@@ -10,7 +10,6 @@ package frc.robot;
 public class Arm {
 
     //Objects
-    Variables var = new Variables();
 
     //Class Variables
     //Current position checks what position the arm is in, 1-X

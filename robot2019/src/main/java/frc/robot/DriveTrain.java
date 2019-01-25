@@ -13,14 +13,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTrain {
+    
+    TalonSRX frontLeft = new TalonSRX(Variables.fLeftMotor);
+    TalonSRX backLeft = new TalonSRX(Variables.bLeftMotor);
 
-    Variables var = new Variables();
-
-    TalonSRX frontLeft = new TalonSRX(var.fLeftMotor);
-    TalonSRX backLeft = new TalonSRX(var.bLeftMotor);
-
-    TalonSRX frontRight = new TalonSRX(var.fRightMotor);
-    TalonSRX backRight = new TalonSRX(var.bRightMotor);
+    TalonSRX frontRight = new TalonSRX(Variables.fRightMotor);
+    TalonSRX backRight = new TalonSRX(Variables.bRightMotor);
 
     /* public void stop() {
 
@@ -42,7 +40,7 @@ public class DriveTrain {
 
     public void tankDrive(Joystick leftJoystick, Joystick rightJoystick){
 
-        drive((-1 * leftJoystick.getY(GenericHID.Hand.kLeft)*var.driveLimiter), (rightJoystick.getY(GenericHID.Hand.kRight)*var.driveLimiter));
+        drive((-1 * leftJoystick.getY(GenericHID.Hand.kLeft)*Variables.driveLimiter), (rightJoystick.getY(GenericHID.Hand.kRight)*Variables.driveLimiter));
     }
 
 }

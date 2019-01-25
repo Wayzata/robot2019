@@ -20,16 +20,17 @@ public class Robot extends TimedRobot {
   DriveTrain driveTrain = new DriveTrain();
   Joystick leftJoystick;
   Joystick rightJoystick;
+  
 
   DriveTrain driveT = new DriveTrain();
-  Variables var = new Variables();
   Arm arm = new Arm();
 
-  Joystick joyLeft = new Joystick(var.joyLeftPort);
-  Joystick joyRight = new Joystick(var.joyRightPort);
+  Joystick joyLeft = new Joystick(Variables.joyLeftPort);
+  Joystick joyRight = new Joystick(Variables.joyRightPort);
 
   @Override
   public void robotInit() {
+    
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
