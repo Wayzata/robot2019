@@ -11,6 +11,7 @@ import edu.wpi.first.vision.VisionRunner;
 import edu.wpi.first.vision.VisionThread;
 
 public class Vision {
+    // I can see the light
 
     // These variables define the resolution of the camera
     public static final int IMG_WIDTH = 400;
