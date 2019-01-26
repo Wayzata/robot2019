@@ -20,6 +20,9 @@ public class DriveTrain {
     TalonSRX frontRight = new TalonSRX(Variables.fRightMotor);
     TalonSRX backRight = new TalonSRX(Variables.bRightMotor);
 
+    double currentPos = 0;
+
+
     /* public void stop() {
 
         frontLeft.set(ControlMode.PercentOutput, 0);
@@ -41,6 +44,16 @@ public class DriveTrain {
     public void tankDrive(Joystick leftJoystick, Joystick rightJoystick){
 
         drive((-1 * leftJoystick.getY(GenericHID.Hand.kLeft)*Variables.driveLimiter), (rightJoystick.getY(GenericHID.Hand.kRight)*Variables.driveLimiter));
+    }
+
+    public void testDrive(){
+        
+        frontRight.set(ControlMode.PercentOutput, .2);
+        
+       
+
+        System.out.println(currentPos);
+
     }
 
 }
