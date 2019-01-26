@@ -35,6 +35,7 @@ public class Robot extends TimedRobot {
 
     leftJoystick = new Joystick(0);
     rightJoystick = new Joystick(1);
+    driveT.resetStuff(0);
   }
 
   /**

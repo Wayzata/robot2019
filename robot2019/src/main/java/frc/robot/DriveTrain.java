@@ -13,14 +13,22 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTrain {
+
+    TalonSRX frontLeft;
+    TalonSRX frontRight;
+    TalonSRX backLeft;
+    TalonSRX backRight;
     
-    TalonSRX frontLeft = new TalonSRX(Variables.fLeftMotor);
-    TalonSRX backLeft = new TalonSRX(Variables.bLeftMotor);
+    public DriveTrain() {
+        frontLeft = new TalonSRX(Variables.fLeftMotor);
+        backLeft = new TalonSRX(Variables.bLeftMotor);
 
-    TalonSRX frontRight = new TalonSRX(Variables.fRightMotor);
-    TalonSRX backRight = new TalonSRX(Variables.bRightMotor);
+        frontRight = new TalonSRX(Variables.fRightMotor);
+        backRight = new TalonSRX(Variables.bRightMotor);
 
-    double currentPos = 0;
+        double currentPos = 0;
+
+    }
 
 
     /* public void stop() {
@@ -48,12 +56,16 @@ public class DriveTrain {
 
     public void testDrive(){
         
+        //frontRight.setSelectedSensorPosition(473);
         frontRight.set(ControlMode.PercentOutput, .2);
         
-       
+        System.out.println("Selected sensor " + frontRight.getSelectedSensorPosition());
+        //Use getSelectedSensorPosition; it updates more often
 
-        System.out.println(currentPos);
+    }
 
+    public void resetStuff(int x) {
+        frontRight.setSelectedSensorPosition(x);
     }
 
 }
