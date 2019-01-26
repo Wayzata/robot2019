@@ -23,11 +23,12 @@ public class Vision {
     private VisionThread visionThread;
     // This Array of Hulls stores the output of the GRIP algorithm
     private Hull[] hulls;
-    // This variable is true if there are valid vision targets in sight and false otherwise
+    // This variable is true if there are valid vision targets in sight and false
+    // otherwise
     private boolean valid;
 
     // The constructor starts the camera and vision processing
-    public Vision(){
+    public Vision() {
         // Starts the camera and sets it to the correct resolution
         camera = CameraServer.getInstance().startAutomaticCapture();
         camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
@@ -35,27 +36,29 @@ public class Vision {
         // Sets up and begins the thread for vision processing
         visionThread = new VisionThread(camera, new GripPipeline(), new VisionRunner.Listener<GripPipeline>() {
             @Override
-            public void copyPipelineOutputs(GripPipeline pipeline){
+            public void copyPipelineOutputs(GripPipeline pipeline) {
                 // This if statement runs if we get an output from the vision software
-                if(! pipeline.convexHullsOutput().isEmpty()){
-            
-                    // Takes the output of the GRIP algorithm and places it into an array of Hull objects
+                if (!pipeline.convexHullsOutput().isEmpty()) {
+                    System.out.println("We are getting hulls!");
+                    // Takes the output of the GRIP algorithm and places it into an array of Hull
+                    // objects
                     ArrayList<MatOfPoint> MatList = pipeline.convexHullsOutput();
 
                     hulls = new Hull[MatList.size()];
-                    for(int x = 0; x < hulls.length; x++){
+                    for (int x = 0; x < hulls.length; x++) {
                         hulls[x] = new Hull(MatList.get(x));
                     }
-                    
+
                     // Identifies and saves the two hulls that correspond to the vision targets
                     hulls = getValidHulls(hulls);
 
-                    if(hulls == null){
-                        valid = false;
-                    }
-                    else{
-                        valid = true;
-                    }
+                    // if(hulls == null){
+                    // valid = false;
+                    // System.out.println("BUT THEY SUCK");
+                    // }
+                    // else{
+                    // valid = true;
+                    // }
                 }
             }
         });
@@ -63,62 +66,59 @@ public class Vision {
     }
 
     // Finds the two Hulls that correspond to the vision targets
-    public Hull[] getValidHulls(Hull[] hulls){
+    public Hull[] getValidHulls(Hull[] hulls) {
         hulls = sortHulls(hulls);
 
         // Assigns the right and left hulls
         Hull leftHull = (hulls[0].getCenter().x < hulls[1].getCenter().x ? hulls[0] : hulls[1]);
         Hull rightHull = (hulls[0].getCenter().x > hulls[1].getCenter().x ? hulls[0] : hulls[1]);
 
-        if(leftHull.getSlope() > 0 && rightHull.getSlope() < 0){
-            // This verifies that the two vision targets in the view are the two vision targets for a goal
-            return new Hull[] {leftHull, rightHull};
-        }
-        else{
-            // If this is not true, return an empty variable
-            return null;
-        }
+        return new Hull[] { leftHull, rightHull };
+
     }
 
     // Sorts the hulls from largest area to smallest area using a selection sort
-    public Hull[] sortHulls(Hull[] hulls){
-        //the index of the lowest value in the unsorted portion of the array
-		int greatest = 0;
-		for(int x = 0; x < hulls.length; x++)
-			for(int i = x; i < hulls.length; i++) {
-				//finds the index of the greatest element in the array
-				if(hulls[i].getArea() > (i == x ? Integer.MIN_VALUE : hulls[greatest].getArea()))
-					greatest = i;
-			//swaps the element at index x with the greatest element to the right of it
-			Hull temp = hulls[x];
-			hulls[x] = hulls[greatest];
-			hulls[greatest] = temp;
-        }
-        
+    public Hull[] sortHulls(Hull[] hulls) {
+        // the index of the lowest value in the unsorted portion of the array
+        int greatest = 0;
+        for (int x = 0; x < hulls.length; x++)
+            for (int i = x; i < hulls.length; i++) {
+                // finds the index of the greatest element in the array
+                if (hulls[i].getArea() > (i == x ? Integer.MIN_VALUE : hulls[greatest].getArea()))
+                    greatest = i;
+                // swaps the element at index x with the greatest element to the right of it
+                Hull temp = hulls[x];
+                hulls[x] = hulls[greatest];
+                hulls[greatest] = temp;
+            }
+
         return hulls;
     }
 
-    // Returns the distance (in pixels) between the center of the two largest hulls (most probably the vision targets)
-    public double getSeparationDistance(){
+    // Returns the distance (in pixels) between the center of the two largest hulls
+    // (most probably the vision targets)
+    public double getSeparationDistance() {
         // The distance formula
-        return Math.sqrt(Math.pow(hulls[0].getCenter().x - hulls[1].getCenter().x, 2) + Math.pow(hulls[0].getCenter().y - hulls[1].getCenter().y, 2));
+        return Math.sqrt(Math.pow(hulls[0].getCenter().x - hulls[1].getCenter().x, 2)
+                + Math.pow(hulls[0].getCenter().y - hulls[1].getCenter().y, 2));
     }
 
-    // Returns the point directly halfway in between the centers of the two largest hulls (most probably the vision targets)
-    public Point getMidpoint(){
+    // Returns the point directly halfway in between the centers of the two largest
+    // hulls (most probably the vision targets)
+    public Point getMidpoint() {
         // The midpoint formula
-        return new Point((hulls[0].getCenter().x + hulls[1].getCenter().x) / 2, (hulls[0].getCenter().y + hulls[1].getCenter().y) / 2);
+        return new Point((hulls[0].getCenter().x + hulls[1].getCenter().x) / 2,
+                (hulls[0].getCenter().y + hulls[1].getCenter().y) / 2);
     }
 
     // Returns a the Hull at a given index
-    public Hull getHull(int index){
+    public Hull getHull(int index) {
         return hulls[index];
     }
 
     // Returns whether or not the vision targets are valid
-    public boolean isValid(){
+    public boolean isValid() {
         return valid;
     }
-
 
 }
