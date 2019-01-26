@@ -23,6 +23,8 @@ public class Vision {
     private VisionThread visionThread;
     // This Array of Hulls stores the output of the GRIP algorithm
     private Hull[] hulls;
+    // This variable is true if there are valid vision targets in sight and false otherwise
+    private boolean valid;
 
     // The constructor starts the camera and vision processing
     public Vision(){
@@ -47,6 +49,13 @@ public class Vision {
                     
                     // Identifies and saves the two hulls that correspond to the vision targets
                     hulls = getValidHulls(hulls);
+
+                    if(hulls == null){
+                        valid = false;
+                    }
+                    else{
+                        valid = true;
+                    }
                 }
             }
         });
@@ -104,6 +113,11 @@ public class Vision {
     // Returns a the Hull at a given index
     public Hull getHull(int index){
         return hulls[index];
+    }
+
+    // Returns whether or not the vision targets are valid
+    public boolean isValid(){
+        return valid;
     }
 
 

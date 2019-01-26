@@ -91,6 +91,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    SmartDashboard.putNumber("Separation Distance", vision.getSeparationDistance());
+    SmartDashboard.putNumber("Center X", vision.getMidpoint().x);
+    SmartDashboard.putNumber("Center Y", vision.getMidpoint().y);
+    SmartDashboard.putBoolean("Is Valid", vision.isValid());
   }
 
   /**
