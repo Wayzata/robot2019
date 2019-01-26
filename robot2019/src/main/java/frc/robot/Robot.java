@@ -17,11 +17,9 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  DriveTrain driveTrain = new DriveTrain();
   Joystick leftJoystick;
   Joystick rightJoystick;
   
-
   DriveTrain driveT = new DriveTrain();
   Arm arm = new Arm();
 
@@ -78,9 +76,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
+    //Check Buttons function(s) go here
+
+
     //Calls drivetrain method, providing joysticks
     driveT.tankDrive(joyLeft, joyRight);
-    arm.changePosition();
 
   }
 
