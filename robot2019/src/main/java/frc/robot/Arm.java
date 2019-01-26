@@ -9,17 +9,8 @@ package frc.robot;
 
 public class Arm {
 
-    //Objects
 
-    //Class Variables
-    //Current position checks what position the arm is in, 1-X
-    int currentPosition = 0;
 
-    public void changePosition(){
-
-        
-
-    }
 
 
 }

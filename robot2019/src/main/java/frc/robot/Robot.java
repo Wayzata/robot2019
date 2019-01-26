@@ -78,9 +78,10 @@ public class Robot extends TimedRobot {
 
     //Check Buttons function(s) go here
 
-
     //Calls drivetrain method, providing joysticks
     driveT.tankDrive(joyLeft, joyRight);
+
+    //Testing encoder
 
   }
 
