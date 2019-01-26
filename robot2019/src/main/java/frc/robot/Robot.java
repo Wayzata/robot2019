@@ -82,6 +82,7 @@ public class Robot extends TimedRobot {
     driveT.tankDrive(joyLeft, joyRight);
 
     //Testing encoder
+    arm.getCount();
 
   }
 

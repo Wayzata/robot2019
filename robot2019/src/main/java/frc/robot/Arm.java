@@ -7,10 +7,29 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
+
 public class Arm {
 
+    //Encoders
+    Encoder Encoder1 = new Encoder(0, 1, true);
+
+    double currentPos = 0;
+    int currentCount = 0;
+
+    //Gets position/pulse count
+    public void getCount(){
+
+        currentPos = Encoder1.getDistance();
+        currentCount = Encoder1.get();
+
+        System.out.println(currentCount);
+        System.out.println(currentPos);
 
 
+    }
+
+    
 
 
 }
