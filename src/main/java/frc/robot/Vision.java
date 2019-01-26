@@ -45,16 +45,34 @@ public class Vision {
                         hulls[x] = new Hull(MatList.get(x));
                     }
                     
-                    // Arranges the hulls from greatest area to smallest area
-                    sortHulls();
+                    // Identifies and saves the two hulls that correspond to the vision targets
+                    hulls = getValidHulls(hulls);
                 }
             }
         });
         visionThread.start();
     }
 
+    // Finds the two Hulls that correspond to the vision targets
+    public Hull[] getValidHulls(Hull[] hulls){
+        hulls = sortHulls(hulls);
+
+        // Assigns the right and left hulls
+        Hull leftHull = (hulls[0].getCenter().x < hulls[1].getCenter().x ? hulls[0] : hulls[1]);
+        Hull rightHull = (hulls[0].getCenter().x > hulls[1].getCenter().x ? hulls[0] : hulls[1]);
+
+        if(leftHull.getSlope() > 0 && rightHull.getSlope() < 0){
+            // This verifies that the two vision targets in the view are the two vision targets for a goal
+            return new Hull[] {leftHull, rightHull};
+        }
+        else{
+            // If this is not true, return an empty variable
+            return null;
+        }
+    }
+
     // Sorts the hulls from largest area to smallest area using a selection sort
-    public Hull[] sortHulls(){
+    public Hull[] sortHulls(Hull[] hulls){
         //the index of the lowest value in the unsorted portion of the array
 		int greatest = 0;
 		for(int x = 0; x < hulls.length; x++)

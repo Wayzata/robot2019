@@ -8,11 +8,13 @@ public class Hull {
     // These variables store the center Point and the value of the area
     private Point center;
     private double area;
+    private double slope;
 
     // The constructor takes a MatOfPoint as an argument. From this, it calculates and stores the center and area of the shape
     public Hull(MatOfPoint mat){
         center = calculateCenter(mat);
         area = calculateArea(mat);
+        slope = calculateSlope(mat);
     }
 
     // Finds the area of the shape outlined by a MatOfPoint
@@ -49,6 +51,20 @@ public class Hull {
         return Math.abs(area);
     }
 
+    // Calculates the average slope of a MatOfPoint
+    public static double calculateSlope(MatOfPoint pointMat){
+        Point[] points = pointMat.toArray();
+        double slope = 0.0;
+
+        for(int x = 0; x < points.length-1; x++){
+            slope += (points[x+1].y - points[x].y) / (points[x+1].x - points[x].x);
+        }
+
+        slope /= points.length;
+        
+        return slope;
+    }
+
 
     // Sets the center of the Hull to a new Point
     public void setCenter(Point newCenter){
@@ -60,6 +76,11 @@ public class Hull {
         area = newArea;
     }
 
+    // Sets the slope of the Hull to a new value
+    public void setSlope(double newSlope){
+        slope = newSlope;
+    }
+
 
     // Returns the center Point
     public Point getCenter(){
@@ -69,6 +90,11 @@ public class Hull {
     // Returns the area
     public double getArea(){
         return area;
+    }
+
+    // Returns the slope
+    public double getSlope(){
+        return slope;
     }
 
 }
