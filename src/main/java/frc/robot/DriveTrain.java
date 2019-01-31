@@ -14,13 +14,22 @@ import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTrain {
 
-    Variables var = new Variables();
+    TalonSRX frontLeft;
+    TalonSRX frontRight;
+    TalonSRX backLeft;
+    TalonSRX backRight;
+    
+    public DriveTrain() {
+        frontLeft = new TalonSRX(Variables.fLeftMotor);
+        backLeft = new TalonSRX(Variables.bLeftMotor);
 
-    TalonSRX frontLeft = new TalonSRX(var.fLeftMotor);
-    TalonSRX backLeft = new TalonSRX(var.bLeftMotor);
+        frontRight = new TalonSRX(Variables.fRightMotor);
+        backRight = new TalonSRX(Variables.bRightMotor);
 
-    TalonSRX frontRight = new TalonSRX(var.fRightMotor);
-    TalonSRX backRight = new TalonSRX(var.bRightMotor);
+        double currentPos = 0;
+
+    }
+
 
     /* public void stop() {
 
@@ -42,7 +51,21 @@ public class DriveTrain {
 
     public void tankDrive(Joystick leftJoystick, Joystick rightJoystick){
 
-        drive((-1 * leftJoystick.getY(GenericHID.Hand.kLeft)*var.driveLimiter), (rightJoystick.getY(GenericHID.Hand.kRight)*var.driveLimiter));
+        drive((-1 * leftJoystick.getY(GenericHID.Hand.kLeft)*Variables.driveLimiter), (rightJoystick.getY(GenericHID.Hand.kRight)*Variables.driveLimiter));
+    }
+
+    public void testDrive(){
+        
+        //frontRight.setSelectedSensorPosition(473);
+        frontRight.set(ControlMode.PercentOutput, .2);
+        
+        System.out.println("Selected sensor " + frontRight.getSelectedSensorPosition());
+        //Use getSelectedSensorPosition; it updates more often
+
+    }
+
+    public void resetStuff(int x) {
+        frontRight.setSelectedSensorPosition(x);
     }
 
 }
