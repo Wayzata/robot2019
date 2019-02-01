@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -46,6 +47,7 @@ public class Robot extends TimedRobot {
 
     leftJoystick = new Joystick(0);
     rightJoystick = new Joystick(1);
+
   }
 
   /**
