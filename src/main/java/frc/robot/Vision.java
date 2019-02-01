@@ -38,8 +38,7 @@ public class Vision {
             @Override
             public void copyPipelineOutputs(GripPipeline pipeline) {
                 // This if statement runs if we get an output from the vision software
-                if (!pipeline.convexHullsOutput().isEmpty()) {
-                    System.out.println("We are getting hulls!");
+                if (pipeline.convexHullsOutput().size() >= 2) {
                     // Takes the output of the GRIP algorithm and places it into an array of Hull
                     // objects
                     ArrayList<MatOfPoint> MatList = pipeline.convexHullsOutput();
