@@ -12,6 +12,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 
+//Shoulder Ticks-Per-Degree: 
+
 public class Arm {
 
     DriveTrain driveT = new DriveTrain();
@@ -21,15 +23,11 @@ public class Arm {
     TalonSRX leftShouldMotor;
     TalonSRX wristMotor;
 
-    //Encoders
-    Encoder Encoder1 = new Encoder(0, 1, true);
-
-    double currentPos = 0;
-
-    double wristPos = 0;
-    double shouldPos = 0;
+    double currWristPos = 0;
+    double currShouldPos = 0;
     
-    double shouldSpeed = 10;
+    double shoulderSpeed = 0.3;
+    double wristSpeed = 0.3;
     int currentCount = 0;
 
     //one rev = 7 pulses
@@ -41,40 +39,33 @@ public class Arm {
         rightShouldMotor = new TalonSRX(Variables.leftShouldMotor);
         leftShouldMotor = new TalonSRX(Variables.rightShouldMotor);
         wristMotor = new TalonSRX(Variables.wristMotor);
-        currentPos = 0;
     }
     public void getCount(){
 
-        
-        currentPos = Encoder1.getDistance();
-        currentCount = Encoder1.get();
-
-        System.out.println(currentCount);
-        System.out.println(currentPos);
         System.out.println(51.43 * currentCount + " Degrees.");
 
     }
 
 
-    public void shoulder(double newPos){
+    public void moveShoulder(double newPos){
 
-        while(newPos < shouldPos){
+        while(newPos < currShouldPos){
 
-            rightShouldMotor.set(ControlMode.PercentOutput, shouldSpeed);
-            leftShouldMotor.set(ControlMode.PercentOutput, -1* shouldSpeed);
+            rightShouldMotor.set(ControlMode.PercentOutput, shoulderSpeed);
+            leftShouldMotor.set(ControlMode.PercentOutput, -1* shoulderSpeed);
 
         }
-        while(newPos > shouldPos){
+        while(newPos > currShouldPos){
 
-            rightShouldMotor.set(ControlMode.PercentOutput, -1* shouldSpeed);
-            leftShouldMotor.set(ControlMode.PercentOutput, shouldSpeed);
+            rightShouldMotor.set(ControlMode.PercentOutput, -1* shoulderSpeed);
+            leftShouldMotor.set(ControlMode.PercentOutput, shoulderSpeed);
 
         }
 
 
     }
 
-    public void wrist(){
+    public void moveWrist(){
 
     }
 
