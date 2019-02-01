@@ -11,7 +11,7 @@ public class Alignment {
 
     // This is the distance (in pixels) from the center of the screen that the midpoint of the two vision targets must be in order to be "aligned"
     public static final double margin = 20;
-
+ 
     // This is the percent output of the motor when the robot is aligning itself
     public static final double motorStrength = .5;
 
