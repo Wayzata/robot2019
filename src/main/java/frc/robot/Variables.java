@@ -18,7 +18,7 @@ public class Variables {
     static int rightButton = 2;
     static int alignButton = 3;
 
-    //Motors
+    //DriveTrain Motors
     static double driveLimiter = 0.4;
     static double singleMotorAdj1 = 0; 
     static int fLeftMotor = 6;
@@ -29,6 +29,15 @@ public class Variables {
     //Joysticks
     static int joyLeftPort = 0;
     static int joyRightPort = 1;
+
+    //Sholder Motors
+    static int leftShouldMotor = 9;
+    static int rightShouldMotor = 9;
+
+    //Wrist Motors
+    static int wristMotor = 9;
+
+
 
     //Lights
     //int centerLight = 4;
