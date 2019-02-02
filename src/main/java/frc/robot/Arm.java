@@ -1,4 +1,3 @@
-/*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
@@ -43,9 +42,9 @@ public class Arm {
 
     //Gets position/pulse count
 
-    public Arm() {
+    public Arm(){
         rightShouldMotor = new TalonSRX(Variables.leftShouldMotor);
-        leftShouldMotor = new TalonSRX(5);
+        leftShouldMotor = new TalonSRX(Variables.rightShouldMotor);
         wristMotor = new TalonSRX(Variables.wristMotor);
         
         testEncoder = new TalonSRX(5);
@@ -75,7 +74,7 @@ public class Arm {
                 }
                 break;
             case "yeet":
-                System.out.println("This should not be happening, check your shoulder switch statement liberal");
+                System.out.println("This should not be happening, check your switch statement liberal");
                 break;
         }
 
@@ -105,7 +104,7 @@ public class Arm {
                 }
                 break;
             case "yeeted":
-                System.out.println("This should not be happening, check your wrist switch statement liberal");
+                System.out.println("This should not be happening, check your switch statement liberal");
                 break;
         }
 
@@ -137,11 +136,11 @@ public class Arm {
 
         if(pos < currWristPos) {
             wristDirection = "down";
-            wristMotor.set(ControlMode.PercentOutput, -1 * Variables.wristSpeed);
+            wristMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
         }
         else if(pos > currShouldPos) {
             wristDirection = "up";
-            wristMotor.set(ControlMode.PercentOutput, Variables.wristSpeed);
+            wristMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
 
         }
 
@@ -164,9 +163,5 @@ public class Arm {
 
     public double getCurrWrist() {
         return currWristPos;
-    }
-
-    public static double degreesToTicks(double deg) {
-        return deg * 6.25;
     }
 }
