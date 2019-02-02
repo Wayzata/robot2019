@@ -49,13 +49,13 @@ public class Arm {
         testEncoder = new TalonSRX(5);
     }
 
-    public void checkShoulder(double newPos){
+    public void checkShoulder(){
 
         currShouldPos = leftShouldMotor.getSelectedSensorPosition();
 
         switch(shoulderDirection) {
             case "up":
-                if(currShouldPos > newPos) {
+                if(currShouldPos >= desiredShouldPos) {
                     rightShouldMotor.set(ControlMode.PercentOutput, 0);
                     leftShouldMotor.set(ControlMode.PercentOutput, 0);
                     shoulderMoveFlag = false;
@@ -64,7 +64,7 @@ public class Arm {
                 }
                 break;
             case "down":
-                if(currShouldPos < newPos) {
+                if(currShouldPos <= desiredShouldPos) {
                     rightShouldMotor.set(ControlMode.PercentOutput, 0);
                     leftShouldMotor.set(ControlMode.PercentOutput, 0);
                     shoulderMoveFlag = false;
@@ -89,17 +89,17 @@ public class Arm {
         shoulderMoveFlag = true;
 
         if(pos < currShouldPos) {
-            shoulderDirection = "up";
+            shoulderDirection = "down";
             leftShouldMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
             rightShouldMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
         }
         else if(pos > currShouldPos) {
-            shoulderDirection = "down";
+            shoulderDirection = "up";
             leftShouldMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
             rightShouldMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
         }
 
-        checkShoulder(pos);
+        checkShoulder();
     }
 
     public void moveEncoder(double pos) {
