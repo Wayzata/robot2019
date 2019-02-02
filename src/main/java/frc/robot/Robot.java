@@ -107,15 +107,11 @@ public class Robot extends TimedRobot {
     driveTrain.rightMove(rightJoystick.getY());
 
     try{
-      SmartDashboard.putNumber("Separation Distance", vision.getSeparationDistance());
-      SmartDashboard.putNumber("Center X", vision.getMidpoint().x);
-      SmartDashboard.putNumber("Center Y", vision.getMidpoint().y);
-      SmartDashboard.putBoolean("Is Valid", vision.isValid());
+      SmartDashboard.putNumber("Separation Distance", vision.getHorizontalSeparationDistance());
+      SmartDashboard.putNumber("Center X", vision.getHorizontalMidpoint());
     }catch(Exception e){
       e.printStackTrace();
     }
-
-    System.out.println("Seperation Distance: " + vision.getSeparationDistance());
   }
 
   /**
