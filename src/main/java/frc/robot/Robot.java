@@ -17,14 +17,10 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  Joystick leftJoystick;
-  Joystick rightJoystick;
-  
-  DriveTrain driveT = new DriveTrain();
-  Arm arm = new Arm();
 
-  Joystick joyLeft = new Joystick(Variables.joyLeftPort);
-  Joystick joyRight = new Joystick(Variables.joyRightPort);
+  DriveTrain driveT;
+  Arm arm;
+ 
 
   @Override
   public void robotInit() {
@@ -33,8 +29,11 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    leftJoystick = new Joystick(0);
-    rightJoystick = new Joystick(1);
+    driveT= new DriveTrain();
+    arm = new Arm();
+
+    //arm.startShoulder(Arm.degreesToTicks(360));
+
     driveT.resetStuff(0);
   }
 
@@ -77,13 +76,18 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-    //Check Buttons function(s) go here
-
     //Calls drivetrain method, providing joystick
 
-    //arm.moveEncoder(2250);
+    //Check Buttons function(s) go here
+    Joysticks.checkButtons();
 
-    
+    // Arm movement checking
+    if(Arm.shoulderMoveFlag) {
+      arm.checkShoulder();
+    }
+    if(Arm.wristMoveFlag) {
+      arm.checkWrist();
+    }
   }
 
 

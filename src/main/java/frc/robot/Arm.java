@@ -43,9 +43,9 @@ public class Arm {
 
     //Gets position/pulse count
 
-    public Arm(){
+    public Arm() {
         rightShouldMotor = new TalonSRX(Variables.leftShouldMotor);
-        leftShouldMotor = new TalonSRX(Variables.rightShouldMotor);
+        leftShouldMotor = new TalonSRX(5);
         wristMotor = new TalonSRX(Variables.wristMotor);
         
         testEncoder = new TalonSRX(5);
@@ -75,7 +75,7 @@ public class Arm {
                 }
                 break;
             case "yeet":
-                System.out.println("This should not be happening, check your switch statement liberal");
+                System.out.println("This should not be happening, check your shoulder switch statement liberal");
                 break;
         }
 
@@ -105,7 +105,7 @@ public class Arm {
                 }
                 break;
             case "yeeted":
-                System.out.println("This should not be happening, check your switch statement liberal");
+                System.out.println("This should not be happening, check your wrist switch statement liberal");
                 break;
         }
 
@@ -137,11 +137,11 @@ public class Arm {
 
         if(pos < currWristPos) {
             wristDirection = "down";
-            wristMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
+            wristMotor.set(ControlMode.PercentOutput, -1 * Variables.wristSpeed);
         }
         else if(pos > currShouldPos) {
             wristDirection = "up";
-            wristMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
+            wristMotor.set(ControlMode.PercentOutput, Variables.wristSpeed);
 
         }
 
@@ -164,5 +164,9 @@ public class Arm {
 
     public double getCurrWrist() {
         return currWristPos;
+    }
+
+    public static double degreesToTicks(double deg) {
+        return deg * 6.25;
     }
 }
