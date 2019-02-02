@@ -45,12 +45,17 @@ public class Vision {
                     // objects
                     ArrayList<MatOfPoint> MatList = pipeline.convexHullsOutput();
                     
+                    System.out.println("-------------------------------------------");
+
                     boundingBoxes = new Rect[MatList.size()];
                     for (int x = 0; x < boundingBoxes.length; x++) {
                         boundingBoxes[x] = Imgproc.boundingRect(MatList.get(x));
+                        //System.out.println("Bounding Box " + x + ": \tCenterX: " + (boundingBoxes[x].x + boundingBoxes[x].width) + "\tArea: " + boundingBoxes[x].area());
                     }
 
                     boundingBoxes = getValidRects(boundingBoxes);
+                    System.out.println("Left Bounding Box: \tCenterX: " + (boundingBoxes[0].x + boundingBoxes[0].width) + "\tArea: " + boundingBoxes[0].area());
+                    System.out.println("Right Bounding Box: \tCenterX: " + (boundingBoxes[1].x + boundingBoxes[1].width) + "\tArea: " + boundingBoxes[1].area());
                 }
             }
         });
