@@ -29,12 +29,14 @@ public class Arm {
     private static double desiredShouldPos;
     private static double desiredWristPos;
     private static String shoulderDirection = "yeet";
+    private static String wristDirection = "yeeted";
     
     double shoulderSpeed = 0.3;
     double wristSpeed = 0.3;
     int currentCount = 0;
     
     public static boolean shoulderMoveFlag = false;
+    public static boolean wristMoveFlag = false;
 
     //one rev = 7 pulses
     //51.43 degrees to a pulse?
@@ -82,6 +84,32 @@ public class Arm {
 
     public void checkWrist(){
 
+        currShouldPos = wristMotor.getSelectedSensorPosition();
+
+        switch(wristDirection) {
+            case "up":
+                if(currWristPos >= desiredWristPos) {
+                    wristMotor.set(ControlMode.PercentOutput, 0);
+                    
+                    wristMoveFlag = false;
+                    desiredWristPos = 0;
+                    wristDirection = "yeeted";
+                }
+                break;
+            case "down":
+                if(currShouldPos <= desiredShouldPos) {
+                    wristMotor.set(ControlMode.PercentOutput, 0);
+                    wristMoveFlag = false;
+                    desiredWristPos = 0;
+                    wristDirection = "yeeted";
+                }
+                break;
+            case "yeeted":
+                System.out.println("This should not be happening, check your switch statement liberal");
+                break;
+        }
+
+
     }
 
     public void startShoulder(double pos) {
@@ -100,6 +128,24 @@ public class Arm {
         }
 
         checkShoulder();
+    }
+
+
+    public void startWrist(double pos) {
+        desiredWristPos = pos;
+        shoulderMoveFlag = true;
+
+        if(pos < currWristPos) {
+            wristDirection = "down";
+            wristMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
+        }
+        else if(pos > currShouldPos) {
+            wristDirection = "up";
+            wristMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
+
+        }
+
+        checkWrist();
     }
 
     public void moveEncoder(double pos) {
