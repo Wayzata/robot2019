@@ -37,6 +37,10 @@ public class Variables {
     //Wrist Motors
     static int wristMotor = 9;
 
+    //Motor Speeds
+    static double shoulderSpeed = 0.3;
+    static double wristSpeed = 0.3;
+
 
 
     //Lights

@@ -17,18 +17,24 @@ import edu.wpi.first.wpilibj.Encoder;
 public class Arm {
 
     DriveTrain driveT = new DriveTrain();
-    
 
     TalonSRX rightShouldMotor;
     TalonSRX leftShouldMotor;
     TalonSRX wristMotor;
 
-    double currWristPos = 0;
-    double currShouldPos = 0;
+    TalonSRX testEncoder;
+
+    private static double currWristPos = 0;
+    private static double currShouldPos = 0;
+    private static double desiredShouldPos;
+    private static double desiredWristPos;
+    private static String shoulderDirection = "yeet";
     
     double shoulderSpeed = 0.3;
     double wristSpeed = 0.3;
     int currentCount = 0;
+    
+    public static boolean shoulderMoveFlag = false;
 
     //one rev = 7 pulses
     //51.43 degrees to a pulse?
@@ -39,39 +45,78 @@ public class Arm {
         rightShouldMotor = new TalonSRX(Variables.leftShouldMotor);
         leftShouldMotor = new TalonSRX(Variables.rightShouldMotor);
         wristMotor = new TalonSRX(Variables.wristMotor);
-    }
-    public void getCount(){
-
-        System.out.println(51.43 * currentCount + " Degrees.");
-
+        
+        testEncoder = new TalonSRX(5);
     }
 
+    public void checkShoulder(double newPos){
 
-    public void moveShoulder(double newPos){
+        currShouldPos = leftShouldMotor.getSelectedSensorPosition();
 
-        while(newPos < currShouldPos){
-
-            rightShouldMotor.set(ControlMode.PercentOutput, shoulderSpeed);
-            leftShouldMotor.set(ControlMode.PercentOutput, -1* shoulderSpeed);
-
+        switch(shoulderDirection) {
+            case "up":
+                if(currShouldPos > newPos) {
+                    rightShouldMotor.set(ControlMode.PercentOutput, 0);
+                    leftShouldMotor.set(ControlMode.PercentOutput, 0);
+                    shoulderMoveFlag = false;
+                    desiredShouldPos = 0;
+                    shoulderDirection = "yeet";
+                }
+                break;
+            case "down":
+                if(currShouldPos < newPos) {
+                    rightShouldMotor.set(ControlMode.PercentOutput, 0);
+                    leftShouldMotor.set(ControlMode.PercentOutput, 0);
+                    shoulderMoveFlag = false;
+                    desiredShouldPos = 0;
+                    shoulderDirection = "yeet";
+                }
+                break;
+            case "yeet":
+                System.out.println("This should not be happening, check your switch statement liberal");
+                break;
         }
-        while(newPos > currShouldPos){
 
-            rightShouldMotor.set(ControlMode.PercentOutput, -1* shoulderSpeed);
-            leftShouldMotor.set(ControlMode.PercentOutput, shoulderSpeed);
 
+    }
+
+    public void checkWrist(){
+
+    }
+
+    public void startShoulder(double pos) {
+        desiredShouldPos = pos;
+        shoulderMoveFlag = true;
+
+        if(pos < currShouldPos) {
+            shoulderDirection = "up";
+            leftShouldMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
+            rightShouldMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
+        }
+        else if(pos > currShouldPos) {
+            shoulderDirection = "down";
+            leftShouldMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
+            rightShouldMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
         }
 
-
+        checkShoulder(pos);
     }
 
-    public void moveWrist(){
+    public void moveEncoder(double pos) {
+        testEncoder.set(ControlMode.PercentOutput, 0.2);
 
+        while(testEncoder.getSelectedSensorPosition() < pos) {
+            System.out.println(testEncoder.getSelectedSensorPosition());
+        }
+
+        testEncoder.set(ControlMode.PercentOutput, 0);
     }
 
+    public double getCurrShoulder() {
+        return currShouldPos;
+    }
 
-
-
-
-
+    public double getCurrWrist() {
+        return currWristPos;
+    }
 }
