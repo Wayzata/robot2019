@@ -7,23 +7,27 @@ import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTrain {
 
+    //Creating the objects for the 4 motors
     TalonSRX frontLeft;
     TalonSRX frontRight;
     TalonSRX backLeft;
     TalonSRX backRight;
     
     public DriveTrain() {
+
+        //Initializing the 4 motors
         frontLeft = new TalonSRX(Variables.fLeftMotor);
         backLeft = new TalonSRX(Variables.bLeftMotor);
 
         frontRight = new TalonSRX(Variables.fRightMotor);
         backRight = new TalonSRX(Variables.bRightMotor);
 
-        double currentPos = 0;
+        //Used for ??
+        //double currentPos = 0;
 
     }
 
-
+    //Method used for autonomous programing, stops motors
     public void stop() {
 
         frontLeft.set(ControlMode.PercentOutput, 0);
@@ -33,20 +37,23 @@ public class DriveTrain {
 
     }
 
-
+    //Method used to set motor speed
     public void drive(double leftSpeed, double rightSpeed) {
 
         frontLeft.set(ControlMode.PercentOutput, leftSpeed);
         backLeft.set(ControlMode.PercentOutput, leftSpeed);
         frontRight.set(ControlMode.PercentOutput, rightSpeed);
         backRight.set(ControlMode.PercentOutput, rightSpeed);
+
     }
 
+    //Method used to simulate tank drive by calling Drive function and sending Joystick values 
     public void tankDrive(Joystick leftJoystick, Joystick rightJoystick){
 
         drive((-1 * leftJoystick.getY(GenericHID.Hand.kLeft)*Variables.driveLimiter), (rightJoystick.getY(GenericHID.Hand.kRight)*Variables.driveLimiter));
     }
 
+    //Method used to do specific drive testing
     public void testDrive(){
         
         //frontRight.setSelectedSensorPosition(473);
@@ -57,6 +64,7 @@ public class DriveTrain {
 
     }
 
+    //Lol what
     public void resetStuff(int x) {
         frontRight.setSelectedSensorPosition(x);
     }

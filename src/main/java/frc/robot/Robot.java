@@ -24,6 +24,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
+    // Initializing Joysticks
     leftJoystick = new Joystick(0);
     rightJoystick = new Joystick(1);
 
