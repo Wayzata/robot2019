@@ -13,7 +13,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   private Vision vision;
-  //private DriveTrain driveTrain;
+  private DriveTrain driveTrain;
 
   private Joystick leftJoystick;
   private Joystick rightJoystick;
@@ -23,9 +23,6 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-
-    vision = new Vision();
-    //driveTrain = new DriveTrain();
 
     leftJoystick = new Joystick(0);
     rightJoystick = new Joystick(1);
@@ -58,24 +55,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    //driveTrain.leftMove(leftJoystick.getY());
-    //driveTrain.rightMove(rightJoystick.getY());
-
-    try{
-      SmartDashboard.putNumber("Separation Distance", vision.getSeparationDistance());
-      SmartDashboard.putNumber("Center X", vision.getMidpoint().x);
-      SmartDashboard.putNumber("Center Y", vision.getMidpoint().y);
-      SmartDashboard.putBoolean("Is Valid", vision.isValid());
-    }catch(Exception e){
-      e.printStackTrace();
-    }
-
-    System.out.println("Seperation Distance: " + vision.getSeparationDistance());
-  }
-
   /**
    * This function is called periodically during test mode.
    */
+  }
   @Override
   public void testPeriodic() {
   }
