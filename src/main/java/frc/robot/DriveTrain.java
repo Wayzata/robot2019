@@ -68,4 +68,15 @@ public class DriveTrain {
     public void resetStuff(int x) {
         frontRight.setSelectedSensorPosition(x);
     }
+
+    public void driveForward(double speed) {
+        backLeft.set(ControlMode.PercentOutput, speed);
+        frontLeft.set(ControlMode.PercentOutput, speed);
+
+        backRight.set(ControlMode.PercentOutput, speed);
+        frontLeft.set(ControlMode.PercentOutput, speed);
+
+    }
+    //Testing comment
+
 }
