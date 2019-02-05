@@ -14,7 +14,8 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   private Vision vision;
-  private DriveTrain driveTrain;
+  public static DriveTrain driveTrain;
+  public static Pneumatics pnuematics;
 
   private Joystick leftJoystick;
   private Joystick rightJoystick;
