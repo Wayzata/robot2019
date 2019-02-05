@@ -25,6 +25,4 @@ public class DriveTrain {
         leftMotor.set(ControlMode.PercentOutput, speed);
         rightMotor.set(ControlMode.PercentOutput, -1 * speed); 
     }
-
-
 }
