@@ -11,7 +11,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 
-//Shoulder Ticks-Per-Degree: 
+//one motor rev = 7 pulses; gearbox is 188:1 ratio
+//6.25 pulses per degree
 
 public class Arm {
 
