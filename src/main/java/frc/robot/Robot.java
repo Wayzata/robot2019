@@ -15,7 +15,7 @@ public class Robot extends TimedRobot {
 
   private Vision vision;
   public static DriveTrain driveTrain;
-  public static Pneumatics pnuematics;
+  public static Pneumatics pneumatics;
 
   private Joystick leftJoystick;
   private Joystick rightJoystick;
