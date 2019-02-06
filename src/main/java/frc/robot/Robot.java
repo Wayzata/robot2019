@@ -16,6 +16,7 @@ public class Robot extends TimedRobot {
   private Vision vision;
   public static DriveTrain driveTrain;
   public static Pneumatics pneumatics;
+  public static Arm arm;
 
   private Joystick leftJoystick;
   private Joystick rightJoystick;
@@ -58,9 +59,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-  /**
-   * This function is called periodically during test mode.
-   */
+ 
+    driveTrain.tankDrive(leftJoystick, rightJoystick);
+    //What is pos?
+    //arm.startShoulder(pos);
+    //arm.startWrist(pos);
+    //What are we adding for Climbing
+    //What are we adding for Vision
+    
   }
   @Override
   public void testPeriodic() {
