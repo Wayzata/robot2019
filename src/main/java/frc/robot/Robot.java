@@ -16,19 +16,16 @@ public class Robot extends TimedRobot {
   private Vision vision;
   public static DriveTrain driveTrain;
   public static Pneumatics pneumatics;
-
-  private Joystick leftJoystick;
-  private Joystick rightJoystick;
+  public static Joysticks joysticks;
 
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-
-    // Initializing Joysticks
-    leftJoystick = new Joystick(0);
-    rightJoystick = new Joystick(1);
+    driveTrain = new DriveTrain();
+    pneumatics = new Pneumatics();
+    joysticks = new Joysticks();
 
   }
 
@@ -58,9 +55,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-  /**
-   * This function is called periodically during test mode.
-   */
+   joysticks.checkButtons();
+   driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
   }
   @Override
   public void testPeriodic() {
