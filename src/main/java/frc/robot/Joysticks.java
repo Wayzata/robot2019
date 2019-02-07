@@ -11,7 +11,14 @@ public class Joysticks {
         rightJoy = new Joystick(Variables.joyRightPort);
     }
 
+    //NEED TO DO
+    //BUTTON MAPPING TALK TO DRIIIIVEEEE TEEEAAAAMMMMM ~Drake
     public static void checkButtons() {
+
+        //Buttons for Arm methods
+        //Buttons for Intake methods
+        //Buttons for Climbing methods
+        //Any other buttons we need
 
     }
 }
