@@ -41,7 +41,13 @@ public class Variables {
     static double shoulderSpeed = 0.3;
     static double wristSpeed = 0.3;
 
-
+    //Buttons
+    static int shoulderUp = 0;
+    static int shoulderDown = 0;
+    static int wristUp = 0;
+    static int wristDown = 0;
+    static int climbUp = 0;
+    static int climbDown = 0;
 
     //Lights
     //int centerLight = 4;
