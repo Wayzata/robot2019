@@ -18,7 +18,7 @@ public class Alignment {
     // This method causes the robot to turn in a given direction until it is aligned
     public void align(int direction, Vision vision, TalonSRX leftMotor, TalonSRX rightMotor){
         // This condition determines whether or not the robot is aligned
-        if(Math.abs(vision.getMidpoint().x - (Vision.IMG_WIDTH / 2)) > margin){
+        if(Math.abs(vision.getHorizontalMidpoint() - (Vision.IMG_WIDTH / 2)) > margin){
             // Turns the robot
             leftMotor.set(ControlMode.PercentOutput, direction * motorStrength);
             rightMotor.set(ControlMode.PercentOutput, -1 * direction * motorStrength);
