@@ -22,6 +22,8 @@ public class Vision {
     public static final int IMG_WIDTH = 400;
     public static final int IMG_HEIGHT = 400;
 
+    public static final int margin = 50;
+
     // The variable for the front facing camera surrounded by LEDs
     private UsbCamera camera;
     // This variable controls the thread used for vision processing
@@ -48,7 +50,7 @@ public class Vision {
                     // objects
                     ArrayList<MatOfPoint> MatList = pipeline.findContoursOutput();
                     
-                    System.out.println("-------------------------------------------");
+                    //System.out.println("-------------------------------------------");
 
                     boundingBoxes = new Rect[MatList.size()];
                     for (int x = 0; x < boundingBoxes.length; x++) {
@@ -57,13 +59,24 @@ public class Vision {
                     }
 
                     boundingBoxes = getValidRects(boundingBoxes);
-                    System.out.println("Left Bounding Box: \tCenterX: " + (boundingBoxes[0].x + boundingBoxes[0].width) + "\tArea: " + boundingBoxes[0].area());
-                    System.out.println("Right Bounding Box: \tCenterX: " + (boundingBoxes[1].x + boundingBoxes[1].width) + "\tArea: " + boundingBoxes[1].area());
+                    //System.out.println("Left Bounding Box: \tCenterX: " + (boundingBoxes[0].x + boundingBoxes[0].width) + "\tArea: " + boundingBoxes[0].area());
+                    //System.out.println("Right Bounding Box: \tCenterX: " + (boundingBoxes[1].x + boundingBoxes[1].width) + "\tArea: " + boundingBoxes[1].area());
                     
+                    SmartDashboard.putBoolean("Alinged", isCentered());
                 }
             }
         });
         visionThread.start();
+    }
+
+    // Returns whether or not the vision targets are centered for the robot
+    public boolean isCentered(){
+        double mid = getHorizontalMidpoint();
+
+        if(mid > IMG_WIDTH/2 - margin && mid < IMG_WIDTH/2 + margin){
+            return true;
+        }
+        return false;
     }
 
     // Finds the two Hulls that correspond to the vision targets
@@ -117,5 +130,7 @@ public class Vision {
     public boolean isValid() {
         return valid;
     }
+
+
 
 }
