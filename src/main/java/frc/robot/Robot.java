@@ -66,7 +66,6 @@ public class Robot extends TimedRobot {
     //arm.startShoulder(pos);
     //arm.startWrist(pos);
     //What are we adding for Climbing?
-    climb.checkClimbButtons();
     //What are we adding for Vision
     
   }
