@@ -21,9 +21,9 @@ public class Variables {
     //DriveTrain Motors
     static double driveLimiter = 0.4;
     static double singleMotorAdj1 = 0; 
-    static int fLeftMotor = 6;
-    static int bLeftMotor = 3;
-    static int fRightMotor = 5;
+    static int fLeftMotor = 1;
+    static int bLeftMotor = 2;
+    static int fRightMotor = 3;
     static int bRightMotor = 4;
 
     //Joysticks
@@ -31,17 +31,19 @@ public class Variables {
     static int joyRightPort = 1;
 
     //Sholder Motors
-    static int leftShouldMotor = 9;
-    static int rightShouldMotor = 9;
+    static int leftShouldMotor = 5;
+    static int rightShouldMotor = 6;
 
     //Wrist Motors
-    static int wristMotor = 9;
+    static int wristMotor = 7;
 
     //Motor Speeds
     static double shoulderSpeed = 0.3;
     static double wristSpeed = 0.3;
 
-
+    //Climing
+    static int climbUp = 3;
+    static int climbDown = 4;
 
     //Lights
     //int centerLight = 4;

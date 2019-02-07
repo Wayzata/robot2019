@@ -154,5 +154,22 @@ public class Climbing {
         climbingUpSuccess = true;   //Use this Bool to give controls back to driver for Parking
         
     }
+
+    //This will check for a climbing button being pressed and the procedure not completed yet, then calling climbing methods
+    public void checkClimbButtons() {
+
+        if (Joysticks.leftJoy.getRawButtonPressed(Variables.climbUp) && climbingUpSuccess == false) {
+
+            ClimbingUp();
+
+        } else if (Joysticks.leftJoy.getRawButtonPressed(Variables.climbDown) && climbingDownCompleted == false) {
+
+            ClimbingDown();
+
+        } else {
+        }
+
+
+    }
     
 }
