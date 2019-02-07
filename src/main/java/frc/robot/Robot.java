@@ -17,6 +17,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static Pneumatics pneumatics;
   public static Arm arm;
+  public static Climbing climb;
 
   private Joystick leftJoystick;
   private Joystick rightJoystick;
@@ -64,7 +65,8 @@ public class Robot extends TimedRobot {
     //What is pos?
     //arm.startShoulder(pos);
     //arm.startWrist(pos);
-    //What are we adding for Climbing
+    //What are we adding for Climbing?
+    climb.checkClimbButtons();
     //What are we adding for Vision
     
   }
