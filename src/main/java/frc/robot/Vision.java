@@ -2,6 +2,8 @@ package frc.robot;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
@@ -11,6 +13,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.vision.VisionRunner;
 import edu.wpi.first.vision.VisionThread;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Vision {
     // I can see the light
@@ -40,10 +43,10 @@ public class Vision {
             @Override
             public void copyPipelineOutputs(GripPipeline pipeline) {
                 // This if statement runs if we get an output from the vision software
-                if (pipeline.convexHullsOutput().size() >= 2) {
+                if (pipeline.findContoursOutput().size() >= 2) {
                     // Takes the output of the GRIP algorithm and places it into an array of Hull
                     // objects
-                    ArrayList<MatOfPoint> MatList = pipeline.convexHullsOutput();
+                    ArrayList<MatOfPoint> MatList = pipeline.findContoursOutput();
                     
                     System.out.println("-------------------------------------------");
 
@@ -56,6 +59,7 @@ public class Vision {
                     boundingBoxes = getValidRects(boundingBoxes);
                     System.out.println("Left Bounding Box: \tCenterX: " + (boundingBoxes[0].x + boundingBoxes[0].width) + "\tArea: " + boundingBoxes[0].area());
                     System.out.println("Right Bounding Box: \tCenterX: " + (boundingBoxes[1].x + boundingBoxes[1].width) + "\tArea: " + boundingBoxes[1].area());
+                    
                 }
             }
         });
