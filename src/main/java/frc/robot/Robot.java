@@ -13,16 +13,18 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  private Vision vision;
+  private static Vision vision;
   public static DriveTrain driveTrain;
   public static Pneumatics pneumatics;
   public static Arm arm;
   public static Climbing climb;
+  public static Joysticks joysticks;
+
 
   private Joystick leftJoystick;
   private Joystick rightJoystick;
 
-  private Joysticks joysticks;
+  
 
   @Override
   public void robotInit() {
@@ -61,6 +63,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    
    joysticks.checkButtons();
    driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
   }

@@ -10,6 +10,7 @@ public class Joysticks {
         leftJoy = new Joystick(Variables.joyLeftPort);
         rightJoy = new Joystick(Variables.joyRightPort);
     }
+    
 
     public void checkButtons() {
         if(leftJoy.getRawButton(1)) {

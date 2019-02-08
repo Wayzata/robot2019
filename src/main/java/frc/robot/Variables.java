@@ -41,11 +41,6 @@ public class Variables {
     static double shoulderSpeed = 0.3;
     static double wristSpeed = 0.3;
 
-<<<<<<< HEAD
-    //Climing
-    static int climbUp = 3;
-    static int climbDown = 4;
-=======
     //Buttons
     static int shoulderUp = 0;
     static int shoulderDown = 0;
@@ -53,7 +48,7 @@ public class Variables {
     static int wristDown = 0;
     static int climbUp = 0;
     static int climbDown = 0;
->>>>>>> a2fdb833c17fda6f85cedd607c48dea6033762be
+
 
     //Lights
     //int centerLight = 4;
