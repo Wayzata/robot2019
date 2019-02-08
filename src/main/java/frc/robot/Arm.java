@@ -11,18 +11,22 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 
-//one motor rev = 7 pulses; gearbox is 188:1 ratio
-//6.25 pulses per degree
+///***Shoulder Stuff ***///
+//one motor rev = 7 pulses; gearbox is 188:1 ratio; external gearing is 3.75:1
+//6.25 pulses per degree; Or maybe 23.25; OOORRRRRRR maybe but probably not 13.71
 
+///***Wrist Stuff ***///
+//one motor rev = 7 pulses; gearbox is 188:1 ratio; external gearing is 2.25:1
+//X pulses per degree; Or maybe 2.63
 public class Arm {
 
     DriveTrain driveT = new DriveTrain();
 
-    TalonSRX rightShouldMotor;
-    TalonSRX leftShouldMotor;
-    TalonSRX wristMotor;
+    static TalonSRX rightShouldMotor;
+    static TalonSRX leftShouldMotor;
+    static TalonSRX wristMotor;
 
-    TalonSRX testEncoder;
+    static TalonSRX testEncoder;
 
     private static double currWristPos = 0;
     private static double currShouldPos = 0;
@@ -38,11 +42,6 @@ public class Arm {
     public static boolean shoulderMoveFlag = false;
     public static boolean wristMoveFlag = false;
 
-    //one rev = 7 pulses
-    //51.43 degrees to a pulse?
-
-    //Gets position/pulse count
-
     public Arm(){
         rightShouldMotor = new TalonSRX(Variables.leftShouldMotor);
         leftShouldMotor = new TalonSRX(Variables.rightShouldMotor);
@@ -51,7 +50,7 @@ public class Arm {
         testEncoder = new TalonSRX(5);
     }
 
-    public void checkShoulder(){
+    public static void checkShoulder(){
 
         currShouldPos = leftShouldMotor.getSelectedSensorPosition();
 
@@ -82,7 +81,7 @@ public class Arm {
 
     }
 
-    public void checkWrist(){
+    public static void checkWrist(){
 
         currShouldPos = wristMotor.getSelectedSensorPosition();
 
@@ -112,8 +111,8 @@ public class Arm {
 
     }
 
-    public void startShoulder(double pos) {
-        desiredShouldPos = pos;
+    public static void startShoulder(double pos) {
+        desiredShouldPos = shoulderDegreesToTicks(pos);
         shoulderMoveFlag = true;
 
         if(pos < currShouldPos) {
@@ -131,8 +130,8 @@ public class Arm {
     }
 
 
-    public void startWrist(double pos) {
-        desiredWristPos = pos;
+    public static void startWrist(double pos) {
+        desiredWristPos = wristDegreesToTicks(pos);
         shoulderMoveFlag = true;
 
         if(pos < currWristPos) {
@@ -148,7 +147,7 @@ public class Arm {
         checkWrist();
     }
 
-    public void moveEncoder(double pos) {
+    public static void moveEncoder(double pos) {
         testEncoder.set(ControlMode.PercentOutput, 0.2);
 
         while(testEncoder.getSelectedSensorPosition() < pos) {
@@ -164,5 +163,13 @@ public class Arm {
 
     public double getCurrWrist() {
         return currWristPos;
+    }
+
+    public static double shoulderDegreesToTicks(double deg) {
+        return deg * 23.25;
+    }
+
+    public static double wristDegreesToTicks(double deg) {
+        return deg * 2.63;
     }
 }
