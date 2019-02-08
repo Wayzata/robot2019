@@ -1,9 +1,3 @@
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -18,6 +12,9 @@ import edu.wpi.first.wpilibj.Encoder;
 ///***Wrist Stuff ***///
 //one motor rev = 7 pulses; gearbox is 188:1 ratio; external gearing is 2.25:1
 //X pulses per degree; Or maybe 2.63
+
+//Authors: Cameron, Drake, Dihviam, (Add here)
+
 public class Arm {
 
     DriveTrain driveT = new DriveTrain();

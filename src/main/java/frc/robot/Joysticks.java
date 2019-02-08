@@ -2,6 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 
+//Authors: ... (Add here)
+
 public class Joysticks {
 
     public Joystick leftJoy, rightJoy;

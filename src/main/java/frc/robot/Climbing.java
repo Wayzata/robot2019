@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import java.io.IOException;
 import java.lang.Thread;
 
+//Authors: Preeti, Jack, ... (Add here)
 
 public class Climbing {
 
