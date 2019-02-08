@@ -3,6 +3,8 @@ package frc.robot;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 
+//Authors: ... (Add here)
+
 public class Hull {
 
     // These variables store the center Point and the value of the area

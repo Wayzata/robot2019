@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import java.io.IOException;
 import java.lang.Thread;
 
+//Authors: Preeti, Jack, ... (Add here)
 
 public class Climbing {
 
@@ -158,11 +159,11 @@ public class Climbing {
     //This will check for a climbing button being pressed and the procedure not completed yet, then calling climbing methods
     public void checkClimbButtons() {
 
-        if (Robot.joysticks.leftJoy.getRawButtonPressed(Variables.climbUp) && climbingUpSuccess == false) {
+        if (Joysticks.leftJoy.getRawButtonPressed(Variables.climbUp) && climbingUpSuccess == false) {
 
             ClimbingUp();
 
-        } else if (Robot.joysticks.rightJoy.getRawButtonPressed(Variables.climbDown) && climbingDownCompleted == false) {
+        } else if (Joysticks.rightJoy.getRawButtonPressed(Variables.climbDown) && climbingDownCompleted == false) {
 
             ClimbingDown();
 

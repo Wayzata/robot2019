@@ -2,9 +2,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 
+//Authors: ... (Add here)
+
 public class Joysticks {
 
-    public Joystick leftJoy, rightJoy;
+    public static Joystick leftJoy, rightJoy;
 
     public Joysticks() {
         leftJoy = new Joystick(Variables.joyLeftPort);
@@ -12,7 +14,7 @@ public class Joysticks {
     }
     
 
-    public void checkButtons() {
+    public static void checkButtons() {
         if(leftJoy.getRawButton(1)) {
             Arm.startShoulder(0);
         }

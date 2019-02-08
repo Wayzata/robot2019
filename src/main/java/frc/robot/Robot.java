@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+//Authors: Technical Team
+
 public class Robot extends TimedRobot {
   //comment
   private static final String kDefaultAuto = "Default";
@@ -18,22 +20,17 @@ public class Robot extends TimedRobot {
   public static Pneumatics pneumatics;
   public static Arm arm;
   public static Climbing climb;
-  public static Joysticks joysticks;
-
-
-  private Joystick leftJoystick;
-  private Joystick rightJoystick;
-
-  
 
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
     driveTrain = new DriveTrain();
     pneumatics = new Pneumatics();
-    joysticks = new Joysticks();
+    arm = new Arm();
+    climb = new Climbing();
 
   }
 
@@ -64,8 +61,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     
-   joysticks.checkButtons();
-   driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
+   Joysticks.checkButtons();
+   driveTrain.drive();
+   //driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
   }
   @Override
   public void testPeriodic() {

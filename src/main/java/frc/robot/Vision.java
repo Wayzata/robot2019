@@ -15,6 +15,8 @@ import edu.wpi.first.vision.VisionRunner;
 import edu.wpi.first.vision.VisionThread;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+//Authors: Thomas, Rafael, ... (Add here)
+
 public class Vision {
     // I can see the light
 

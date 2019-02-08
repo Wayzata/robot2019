@@ -3,7 +3,10 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.GenericHID;
+
+//Authors: Preeti, ... (Add here)
 
 public class DriveTrain {
 
@@ -45,6 +48,13 @@ public class DriveTrain {
         frontRight.set(ControlMode.PercentOutput, rightSpeed);
         backRight.set(ControlMode.PercentOutput, rightSpeed);
 
+    }
+
+    public void drive() {
+        frontLeft.set(ControlMode.PercentOutput, Joysticks.leftJoy.getY(Hand.kLeft));
+        backLeft.set(ControlMode.PercentOutput, Joysticks.leftJoy.getY(Hand.kLeft));
+        frontRight.set(ControlMode.PercentOutput, Joysticks.rightJoy.getY(Hand.kRight));
+        backRight.set(ControlMode.PercentOutput, Joysticks.rightJoy.getY(Hand.kRight));
     }
 
     //Method used to simulate tank drive by calling Drive function and sending Joystick values 
