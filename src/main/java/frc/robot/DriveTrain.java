@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID;
 
+//Authors: Preeti, ... (Add here)
+
 public class DriveTrain {
 
     //Creating the objects for the 4 motors
