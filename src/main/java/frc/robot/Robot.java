@@ -19,6 +19,7 @@ public class Robot extends TimedRobot {
   public static Arm arm;
   public static Climbing climb;
   public static Joysticks joysticks;
+  public static Intake intake;
 
   @Override
   public void robotInit() {
@@ -27,6 +28,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     driveTrain = new DriveTrain();
+    intake = new Intake();
     //pneumatics = new Pneumatics();
     arm = new Arm(); 
     //climb = new Climbing();

@@ -16,7 +16,7 @@ public class Joysticks {
     public void checkButtons() {
         if (leftJoy.getRawButton(4)) {
             System.out.println("Button 4 - Move up");
-            Arm.startShoulder(-10);
+            Arm.startShoulder(-100000);
         } else if (leftJoy.getRawButton(3)) {
             System.out.println("Button 3 - Move down");
             Arm.startShoulder(10);
@@ -26,7 +26,13 @@ public class Joysticks {
             Arm.setShouldMoveFlag(false);
             //Robot.arm.resetStuff(0);
             Robot.arm.stopShoulder();
+        }
 
+        if(leftJoy.getRawButton(6)) {
+            Robot.intake.activateIntakeMotors();
+        }
+        else if(leftJoy.getRawButton(7)) {
+            Robot.intake.stopIntakeMotors();
         }
 
         // Robot.climb.checkClimbButtons();
