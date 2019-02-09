@@ -40,6 +40,12 @@ public class Variables {
     static int climbUp = 0;
     static int climbDown = 0;
 
+    //Intake
+    public static final int intakeTalon = 25;
+    public static final int intakeSolenoid = 1;
+    public static final double intakeMotorSpeed = .5;
+    public static final double outputMotorSpeed = .5;
+
 
     //Lights
     //int centerLight = 4;

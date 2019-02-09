@@ -3,7 +3,6 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.Encoder;
 
 ///***Shoulder Stuff ***///
 //one motor rev = 7 pulses; gearbox is 188:1 ratio; external gearing is 3.75:1

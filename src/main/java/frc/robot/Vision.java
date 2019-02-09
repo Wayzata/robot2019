@@ -2,10 +2,7 @@ package frc.robot;
 
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 

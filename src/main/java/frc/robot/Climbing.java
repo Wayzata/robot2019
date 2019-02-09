@@ -3,7 +3,6 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Solenoid;
 
-import java.io.IOException;
 import java.lang.Thread;
 
 //Authors: Preeti, Jack, ... (Add here)

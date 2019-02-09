@@ -1,21 +1,15 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 
-//Authors: Nathaniel, Dillan
+//Authors: Nathanael, Dillan
 
 public class Intake {
 
-    public static final int intakeTalon = 25;
-    public static final int intakeSolenoid = 1;
-    public static final double intakeMotorSpeed = .5;
-    public static final double outputMotorSpeed = .5;
 
     // This solenoid controls the piston used in ejecting the disk
     private Solenoid piston;
@@ -25,14 +19,14 @@ public class Intake {
 
     // Initializes motors and talons
     public Intake(){
-        piston = new Solenoid(1);
+        piston = new Solenoid(Variables.intakeSolenoid);
 
-        wheelMotor = new TalonSRX(25);
+        wheelMotor = new TalonSRX(Variables.intakeTalon);
     }
 
     // turns on the motors for intake
     public void activateIntakeMotors(){
-        wheelMotor.set(ControlMode.PercentOutput, intakeMotorSpeed);
+        wheelMotor.set(ControlMode.PercentOutput, Variables.intakeMotorSpeed);
     }
 
     // stops the motors
@@ -42,7 +36,7 @@ public class Intake {
 
     // turns on the motors for output
     public void reverseIntakeMotors(){
-        wheelMotor.set(ControlMode.PercentOutput, outputMotorSpeed);
+        wheelMotor.set(ControlMode.PercentOutput, Variables.outputMotorSpeed);
     }
 
     // extends the ouput piston
