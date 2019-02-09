@@ -80,8 +80,6 @@ public class Arm {
         if(!shoulderMoveFlag) {
             return;
         }
-       // System.out.println("curr: " + currShoulderPos);
-       // System.out.println("des: " + desiredShoulderPos);
 
         switch(shoulderDirection) {
             case "up":
@@ -114,7 +112,7 @@ public class Arm {
                 }
                 break;
             default:
-                //System.out.println("Not Movi");
+                System.out.println("Not Moving; This should not happen");
                 break;
         }
 
@@ -153,6 +151,7 @@ public class Arm {
 
     public static void startShoulder(double pos) {
         desiredShoulderPos = shoulderDegreesToTicks(pos);
+        //desiredShoulderPos = pos;
         System.out.println("current pos: " + currShoulderPos);
         System.out.println("SET DES TO: " + desiredShoulderPos);
 
@@ -206,7 +205,7 @@ public class Arm {
     }
 
     public static double shoulderDegreesToTicks(double deg) {
-        return deg * 23.25;
+        return deg * 46.5;
     }
 
     public static double wristDegreesToTicks(double deg) {

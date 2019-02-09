@@ -16,10 +16,10 @@ public class Joysticks {
     public void checkButtons() {
         if (leftJoy.getRawButton(4)) {
             System.out.println("Button 4 - Move up");
-            Arm.startShoulder(-45);
+            Arm.startShoulder(-10);
         } else if (leftJoy.getRawButton(3)) {
             System.out.println("Button 3 - Move down");
-            Arm.startShoulder(45);
+            Arm.startShoulder(10);
         } else if (leftJoy.getRawButton(5)) {
             Arm.startShoulder(0);
         } else if (leftJoy.getRawButton(11)) {

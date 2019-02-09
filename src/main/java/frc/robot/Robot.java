@@ -39,7 +39,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     //arm.printPosition();
-    arm.resetStuff(0);
     Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
 
   }
