@@ -46,7 +46,7 @@ public class Intake {
     }
 
     // extends the ouput piston
-    public void extendOutputPiston(){ //Han shot first
+    public void extendOutputPiston(){ //Han shot firstx
         piston.set(true);
     }
 
