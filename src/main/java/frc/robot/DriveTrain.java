@@ -51,10 +51,10 @@ public class DriveTrain {
     }
 
     public void drive() {
-        frontLeft.set(ControlMode.PercentOutput, Joysticks.leftJoy.getY(Hand.kLeft));
-        backLeft.set(ControlMode.PercentOutput, Joysticks.leftJoy.getY(Hand.kLeft));
-        frontRight.set(ControlMode.PercentOutput, Joysticks.rightJoy.getY(Hand.kRight));
-        backRight.set(ControlMode.PercentOutput, Joysticks.rightJoy.getY(Hand.kRight));
+        frontLeft.set(ControlMode.PercentOutput, Robot.joysticks.leftJoy.getY(Hand.kLeft));
+        backLeft.set(ControlMode.PercentOutput, Robot.joysticks.leftJoy.getY(Hand.kLeft));
+        frontRight.set(ControlMode.PercentOutput, Robot.joysticks.rightJoy.getY(Hand.kRight));
+        backRight.set(ControlMode.PercentOutput, Robot.joysticks.rightJoy.getY(Hand.kRight));
     }
 
     //Method used to simulate tank drive by calling Drive function and sending Joystick values 

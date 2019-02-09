@@ -33,6 +33,8 @@ public class Robot extends TimedRobot {
     arm = new Arm(); 
     climb = new Climbing();
     joysticks = new Joysticks();
+    
+    arm.resetStuff(0);
 
   }
 
@@ -63,7 +65,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     
-   Joysticks.checkButtons();
+   joysticks.checkButtons();
    //Arm.startThing();
    //driveTrain.drive();
    //driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);

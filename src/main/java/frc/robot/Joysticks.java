@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class Joysticks {
 
-    public static Joystick leftJoy, rightJoy;
+    Joystick leftJoy, rightJoy;
 
     public Joysticks() {
         leftJoy = new Joystick(Variables.joyLeftPort);
@@ -14,7 +14,7 @@ public class Joysticks {
     }
     
 
-    public static void checkButtons() {
+    public void checkButtons() {
         if(leftJoy.getRawButton(4)) {
             Arm.startShoulder(-20);
         }

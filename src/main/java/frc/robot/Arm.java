@@ -167,4 +167,8 @@ public class Arm {
     public static void startThing() {
         leftShouldMotor.set(ControlMode.PercentOutput, 0.2);
     }
+
+    public void resetStuff(int pos) {
+        leftShouldMotor.setSelectedSensorPosition(pos);
+    }
 }
