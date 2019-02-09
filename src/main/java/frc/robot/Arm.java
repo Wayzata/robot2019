@@ -19,7 +19,6 @@ public class Arm {
 
     DriveTrain driveT = new DriveTrain();
 
-    static TalonSRX rightShouldMotor;
     static TalonSRX leftShouldMotor;
     static TalonSRX wristMotor;
 
@@ -40,9 +39,8 @@ public class Arm {
     public static boolean wristMoveFlag = false;
 
     public Arm(){
-        rightShouldMotor = new TalonSRX(Variables.leftShouldMotor);
-        leftShouldMotor = new TalonSRX(Variables.rightShouldMotor);
         wristMotor = new TalonSRX(Variables.wristMotor);
+        leftShouldMotor = new TalonSRX(Variables.leftShouldMotor);
         
         testEncoder = new TalonSRX(5);
     }
@@ -54,7 +52,6 @@ public class Arm {
         switch(shoulderDirection) {
             case "up":
                 if(currShouldPos >= desiredShouldPos) {
-                    rightShouldMotor.set(ControlMode.PercentOutput, 0);
                     leftShouldMotor.set(ControlMode.PercentOutput, 0);
                     shoulderMoveFlag = false;
                     desiredShouldPos = 0;
@@ -63,7 +60,6 @@ public class Arm {
                 break;
             case "down":
                 if(currShouldPos <= desiredShouldPos) {
-                    rightShouldMotor.set(ControlMode.PercentOutput, 0);
                     leftShouldMotor.set(ControlMode.PercentOutput, 0);
                     shoulderMoveFlag = false;
                     desiredShouldPos = 0;
@@ -115,12 +111,10 @@ public class Arm {
         if(pos < currShouldPos) {
             shoulderDirection = "down";
             leftShouldMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
-            rightShouldMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
         }
         else if(pos > currShouldPos) {
             shoulderDirection = "up";
             leftShouldMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
-            rightShouldMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
         }
 
         checkShoulder();
@@ -168,5 +162,9 @@ public class Arm {
 
     public static double wristDegreesToTicks(double deg) {
         return deg * 2.63;
+    }
+
+    public static void startThing() {
+        leftShouldMotor.set(ControlMode.PercentOutput, 0.2);
     }
 }

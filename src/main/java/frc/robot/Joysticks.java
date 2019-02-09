@@ -15,13 +15,14 @@ public class Joysticks {
     
 
     public static void checkButtons() {
-        if(leftJoy.getRawButton(1)) {
-            Arm.startShoulder(0);
+        if(leftJoy.getRawButton(4)) {
+            Arm.startShoulder(-20);
         }
-        if(leftJoy.getRawButton(2)) {
-            Arm.startShoulder(90);
+        if(leftJoy.getRawButton(3)) {
+            Arm.startShoulder(20);
         }
 
+        //Robot.climb.checkClimbButtons();
 
         ///***Arm State Checking ***///
         if(Arm.shoulderMoveFlag) {

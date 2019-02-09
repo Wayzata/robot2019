@@ -24,13 +24,12 @@ public class Variables {
 
     //Sholder Motors
     static int leftShouldMotor = 5;
-    static int rightShouldMotor = 6;
 
     //Wrist Motors
     static int wristMotor = 7;
 
     //Motor Speeds
-    static double shoulderSpeed = 0.3;
+    static double shoulderSpeed = 0.1;
     static double wristSpeed = 0.3;
 
     //Buttons
