@@ -23,13 +23,13 @@ public class Variables {
     static int joyRightPort = 1;
 
     //Sholder Motors
-    static int leftShouldMotor = 5;
+    static int leftShoulderMotor = 5;
 
     //Wrist Motors
-    static int wristMotor = 7;
+    static int wristMotor = 6;
 
     //Motor Speeds
-    static double shoulderSpeed = 0.1;
+    static double shoulderSpeed = 0.5;
     static double wristSpeed = 0.3;
 
     //Buttons

@@ -27,9 +27,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     driveTrain = new DriveTrain();
-    pneumatics = new Pneumatics();
+    //pneumatics = new Pneumatics();
     arm = new Arm(); 
-    climb = new Climbing();
+    //climb = new Climbing();
     joysticks = new Joysticks();
     
     arm.resetStuff(0);
@@ -38,6 +38,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    //arm.printPosition();
+    arm.resetStuff(0);
+    Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
+
   }
 
   @Override
