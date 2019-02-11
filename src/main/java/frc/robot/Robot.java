@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
     driveTrain = new DriveTrain();
     intake = new Intake();
     //pneumatics = new Pneumatics();
-    arm = new Arm(); 
+    arm = new Arm();
     //climb = new Climbing();
     joysticks = new Joysticks();
     
