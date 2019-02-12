@@ -24,6 +24,7 @@ public class Variables {
 
     //Sholder Motors
     static int leftShoulderMotor = 5;
+    static int shoulderLimitSwitchPort = 9;
 
     //Wrist Motors
     static int wristMotor = 6;

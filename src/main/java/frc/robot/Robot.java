@@ -46,6 +46,7 @@ public class Robot extends TimedRobot {
     
     arm.resetStuff(0);
 
+    Arm.setToZero();
   }
 
   @Override
@@ -78,10 +79,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     
-   joysticks.checkButtons();
-   //Arm.startThing();
-   //driveTrain.drive();
-   //driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
+    joysticks.checkButtons();
+    //Arm.startThing();
+    //driveTrain.drive();
+    //driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
   }
   @Override
   public void testPeriodic() {

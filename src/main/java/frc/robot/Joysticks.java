@@ -9,17 +9,17 @@ public class Joysticks {
     Joystick leftJoy, rightJoy;
 
     // Ground cargo pickup
-    public static final double cargoFloor = 1;
+    public static final double cargoFloor = 0;
     // Low hatch player-station/ship/rocket
-    public static final double lowHatch = 2;
+    public static final double lowHatch = -500;
     // Low cargo rocket
-    public static final double lowCargoRocket = 3;
+    public static final double lowCargoRocket = -600;
     // middle hatch placement
-    public static final double midHatchRocket = 4;
+    public static final double midHatchRocket = -2264;
     // middle cargo placement
-    public static final double midCargoRocket = 5;
+    public static final double midCargoRocket = -2500;
     // ship cargo
-    public static final double cargoShip = 6;
+    public static final double cargoShip = -2500;
 
     // wrist position for panels
     public static final double hatchWrist = 7;
@@ -32,15 +32,9 @@ public class Joysticks {
     }
 
     public void checkButtons() {
-        if (leftJoy.getRawButton(4)) {
-            System.out.println("Button 4 - Move up");
-            Arm.startShoulder(-2264);
-        } else if (leftJoy.getRawButton(3)) {
-            System.out.println("Button 3 - Move down");
-            Arm.startShoulder(10);
-        } else if (leftJoy.getRawButton(5)) {
+        if (leftJoy.getRawButton(3)) {
             Arm.startShoulder(0);
-        } else if (leftJoy.getRawButton(6)) {
+        } else if (leftJoy.getRawButton(4)) {
             Arm.setShouldMoveFlag(false);
             // Robot.arm.resetStuff(0);
             Robot.arm.stopShoulder();
@@ -58,9 +52,9 @@ public class Joysticks {
             Arm.startShoulder(cargoShip);
         }
 
-        if (leftJoy.getRawButton(6)) {
+        if (leftJoy.getRawButton(5)) {
             Robot.intake.activateIntakeMotors();
-        } else if (leftJoy.getRawButton(7)) {
+        } else if (leftJoy.getRawButton(6)) {
             Robot.intake.stopIntakeMotors();
         }
 

@@ -25,7 +25,7 @@ public class Arm {
 
     static TalonSRX testEncoder;
 
-    private static DigitalInput limitSwitch;
+    private static DigitalInput shoulderLimitSwitch;
 
     private static double currWristPos = 0;
     public static double currShoulderPos = 0;
@@ -47,7 +47,7 @@ public class Arm {
 
         testEncoder = new TalonSRX(5);
 
-        limitSwitch = new DigitalInput(5);
+        shoulderLimitSwitch = new DigitalInput(Variables.shoulderLimitSwitchPort);
     }
 
     /*
@@ -76,12 +76,6 @@ public class Arm {
     // keep moving down
     // curr: -5069.0
     // des: -232.5
-
-    public static void checkLimitSwitch(){
-        if(!limitSwitch.get()){
-            leftShoulderMotor.setSelectedSensorPosition(0);
-        }
-    }
 
     public static void checkShoulder() {
 
@@ -124,35 +118,6 @@ public class Arm {
 
     }
 
-    public static void checkWrist() {
-
-        currShoulderPos = wristMotor.getSelectedSensorPosition();
-
-        switch (wristDirection) {
-        case "down":
-            if (currWristPos >= desiredWristPos) {
-                wristMotor.set(ControlMode.PercentOutput, 0);
-
-                wristMoveFlag = false;
-                desiredWristPos = 0;
-                wristDirection = "yeeted";
-            }
-            break;
-        case "up":
-            if (currShoulderPos <= desiredShoulderPos) {
-                wristMotor.set(ControlMode.PercentOutput, 0);
-                wristMoveFlag = false;
-                desiredWristPos = 0;
-                wristDirection = "yeeted";
-            }
-            break;
-        case "yeeted":
-            System.out.println("This should not be happening, check your switch statement liberal");
-            break;
-        }
-
-    }
-
     public static void startShoulder(double pos) {
         desiredShoulderPos = pos;
         //desiredShoulderPos = shoulderDegreesToTicks(pos);
@@ -173,19 +138,68 @@ public class Arm {
     }
 
     public static void startWrist(double pos) {
-        // desiredWristPos = pos;
-        desiredWristPos = wristDegreesToTicks(pos);
+        desiredShoulderPos = pos;
+        //desiredShoulderPos = shoulderDegreesToTicks(pos);
+        // desiredShoulderPos = pos;
+        System.out.println("current pos: " + currWristPos);
+        System.out.println("SET DES TO: " + desiredWristPos);
 
-        if (desiredWristPos < currWristPos) {
-            wristDirection = "down";
-            wristMotor.set(ControlMode.PercentOutput, -1 * Variables.shoulderSpeed);
-        } else if (desiredWristPos > currWristPos) {
+        if (shouldMove("up", currWristPos, desiredWristPos)) {
             wristDirection = "up";
-            wristMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
+            System.out.println("MOVE UP");
+        } else if (shouldMove("down", currWristPos, desiredWristPos)) {
 
+            wristDirection = "down";
+            System.out.println("MOVE DOWN");
+        }
+        wristMoveFlag = true;
+        checkShoulder();
+    }
+
+    public static void checkWrist() {
+
+        if (!wristMoveFlag) {
+            return;
         }
 
-        checkWrist();
+        switch (wristDirection) {
+        case "up":
+            if (shouldMove(wristDirection, currWristPos, desiredWristPos)) {
+                wristMoveFlag = true;
+                wristMotor.set(ControlMode.PercentOutput, -1 * Variables.wristSpeed);
+                // System.out.println("keep moving up");
+            } else {
+                wristMotor.set(ControlMode.PercentOutput, 0);
+                wristMoveFlag = false;
+                // desiredShoulderPos = 0;
+                wristDirection = "yeeted";
+                System.out.println("ARRIVED, STOP MOVING UP");
+            }
+
+            break;
+        case "down":
+            if (shouldMove(wristDirection, currWristPos, desiredWristPos)) {
+                wristMotor.set(ControlMode.PercentOutput, Variables.wristSpeed);
+                wristMoveFlag = true;
+                // System.out.println("keep moving down");
+            } else {
+                wristMotor.set(ControlMode.PercentOutput, 0);
+                wristMoveFlag = false;
+                // desiredShoulderPos = 0;
+                wristDirection = "yeeted";
+                System.out.println("ARRIVED, STOP DOWN");
+            }
+            break;
+        default:
+            System.out.println("Not Moving; This should not happen");
+            break;
+        }
+    }
+
+    public static void setToZero(){
+        while(shoulderLimitSwitch.get()){
+            leftShoulderMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
+        }
     }
 
     public static void moveEncoder(double pos) {
