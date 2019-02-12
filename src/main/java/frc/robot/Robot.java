@@ -6,6 +6,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //Authors: Technical Team
 
+/*
+To Do:
+- Perfect Arms
+- Test Wrist
+- Test Intake
+- Test Climbing
+- Vision                                                                                                                                                     :(
+- Practice Driving
+*/
+
 public class Robot extends TimedRobot {
   //comment
   private static final String kDefaultAuto = "Default";
@@ -40,7 +50,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    //arm.printPosition();
+    arm.printPosition();
     Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
 
   }

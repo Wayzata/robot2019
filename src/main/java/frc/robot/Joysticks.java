@@ -8,6 +8,24 @@ public class Joysticks {
 
     Joystick leftJoy, rightJoy;
 
+    // Ground cargo pickup
+    public static final double cargoFloor = 1;
+    // Low hatch player-station/ship/rocket
+    public static final double lowHatch = 2;
+    // Low cargo rocket
+    public static final double lowCargoRocket = 3;
+    // middle hatch placement
+    public static final double midHatchRocket = 4;
+    // middle cargo placement
+    public static final double midCargoRocket = 5;
+    // ship cargo
+    public static final double cargoShip = 6;
+
+    // wrist position for panels
+    public static final double hatchWrist = 7;
+    // wrist position for cargo
+    public static final double cargoWrist = 8;
+
     public Joysticks() {
         leftJoy = new Joystick(Variables.joyLeftPort);
         rightJoy = new Joystick(Variables.joyRightPort);
@@ -16,30 +34,41 @@ public class Joysticks {
     public void checkButtons() {
         if (leftJoy.getRawButton(4)) {
             System.out.println("Button 4 - Move up");
-            Arm.startShoulder(-100000);
+            Arm.startShoulder(-2264);
         } else if (leftJoy.getRawButton(3)) {
             System.out.println("Button 3 - Move down");
             Arm.startShoulder(10);
         } else if (leftJoy.getRawButton(5)) {
             Arm.startShoulder(0);
-        } else if (leftJoy.getRawButton(11)) {
+        } else if (leftJoy.getRawButton(6)) {
             Arm.setShouldMoveFlag(false);
-            //Robot.arm.resetStuff(0);
+            // Robot.arm.resetStuff(0);
             Robot.arm.stopShoulder();
+        } else if (leftJoy.getRawButton(7)) {
+            Arm.startShoulder(cargoFloor);
+        } else if (leftJoy.getRawButton(8)) {
+            Arm.startShoulder(lowHatch);
+        } else if (leftJoy.getRawButton(9)) {
+            Arm.startShoulder(lowCargoRocket);
+        } else if (leftJoy.getRawButton(10)) {
+            Arm.startShoulder(midHatchRocket);
+        } else if (leftJoy.getRawButton(11)) {
+            Arm.startShoulder(midCargoRocket);
+        } else if (leftJoy.getRawButton(12)) {
+            Arm.startShoulder(cargoShip);
         }
 
-        if(leftJoy.getRawButton(6)) {
+        if (leftJoy.getRawButton(6)) {
             Robot.intake.activateIntakeMotors();
-        }
-        else if(leftJoy.getRawButton(7)) {
+        } else if (leftJoy.getRawButton(7)) {
             Robot.intake.stopIntakeMotors();
         }
 
         // Robot.climb.checkClimbButtons();
 
         /// ***Arm State Checking ***///
-            Arm.checkShoulder();
-        
+        Arm.checkShoulder();
+
         if (Arm.wristMoveFlag) {
             Arm.checkWrist();
         }
