@@ -12,7 +12,7 @@ public class Variables {
 
     //DriveTrain Motors
     static double driveLimiter = 0.4;
-    static double singleMotorAdj1 = 0; 
+    static double singleMotorAdj1 = 0;
     static int fLeftMotor = 1;
     static int bLeftMotor = 2;
     static int fRightMotor = 3;
