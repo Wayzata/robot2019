@@ -17,7 +17,7 @@ public class Variables {
     static int bLeftMotor = 2;
     static int fRightMotor = 3;
     static int bRightMotor = 4;
-
+    
     //Joysticks
     static int joyLeftPort = 0;
     static int joyRightPort = 1;
