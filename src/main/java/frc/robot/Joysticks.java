@@ -52,6 +52,18 @@ public class Joysticks {
             Arm.startShoulder(cargoShip);
         }
 
+        if(leftJoy.getTrigger()){
+            Robot.climb.testFullClimb("UP");
+        }else if(rightJoy.getTrigger()){
+            Robot.climb.testFullClimb("DOWN");
+        }
+
+        if (leftJoy.getRawButton(2)){
+            Robot.climb.testPivotPiston("OUT");
+        } else if (rightJoy.getRawButton(2)){
+            Robot.climb.testPivotPiston("IN");
+        }
+
         if (leftJoy.getRawButton(5)) {
             Robot.intake.activateIntakeMotors();
         } else if (leftJoy.getRawButton(6)) {

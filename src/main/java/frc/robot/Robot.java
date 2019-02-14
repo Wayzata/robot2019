@@ -39,19 +39,17 @@ public class Robot extends TimedRobot {
 
     driveTrain = new DriveTrain();
     intake = new Intake();
-    //pneumatics = new Pneumatics();
+    pneumatics = new Pneumatics();
     arm = new Arm();
-    //climb = new Climbing();
+    climb = new Climbing();
     joysticks = new Joysticks();
     
     arm.resetStuff(0);
-
-    Arm.setToZero();
   }
 
   @Override
   public void robotPeriodic() {
-    arm.printPosition();
+    //arm.printPosition();
     Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
 
   }

@@ -43,9 +43,15 @@ public class Variables {
 
     //Intake
     public static final int intakeTalon = 25;
-    public static final int intakeSolenoid = 1;
+    public static final int intakeSolenoid = 7;
     public static final double intakeMotorSpeed = .5;
     public static final double outputMotorSpeed = .5;
+   
+    //components
+
+    public static final int pcm= 0;
+    public static final int pdp=1;
+
 
 
     //Lights
