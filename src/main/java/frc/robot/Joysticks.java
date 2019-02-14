@@ -33,7 +33,7 @@ public class Joysticks {
 
     public void checkButtons() {
         if (leftJoy.getRawButton(3)) {
-            Arm.setToZero();
+           // Arm.setToZero();
         } else if (leftJoy.getRawButton(4)) {
             Arm.setShouldMoveFlag(false);
             // Robot.arm.resetStuff(0);
@@ -62,6 +62,10 @@ public class Joysticks {
             Robot.climb.testPivotPiston("OUT");
         } else if (rightJoy.getRawButton(2)){
             Robot.climb.testPivotPiston("IN");
+        }
+
+        if (leftJoy.getRawButton(3)){
+            Robot.climb.testLongClimb();
         }
 
         if (leftJoy.getRawButton(5)) {

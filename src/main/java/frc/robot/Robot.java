@@ -46,21 +46,12 @@ public class Robot extends TimedRobot {
     joysticks = new Joysticks();
     
     arm.resetStuff(0);
-<<<<<<< HEAD
-
-    //Arm.setToZero(); 
-=======
->>>>>>> 5efb8d56f0f913b27733c999f4c7c32b8c7a753c
   }
 
   @Override
   public void robotPeriodic() {
     //arm.printPosition();
-<<<<<<< HEAD
-    //Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
-=======
     Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
->>>>>>> 5efb8d56f0f913b27733c999f4c7c32b8c7a753c
 
   }
 
@@ -87,7 +78,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     if(zeroFlag) {
-      Arm.setToZero();
+      //Arm.setToZero();
       zeroFlag = false;
     }
     

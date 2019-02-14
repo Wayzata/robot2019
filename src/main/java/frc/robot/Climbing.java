@@ -171,6 +171,19 @@ public class Climbing {
         }
 
     }
+    public void testLongClimb(){
+        Robot.pneumatics.extendSingleSolenoid(frontLong);
+        try {
+            Thread.sleep(0);
+            System.out.println("SLEEPT");
+        } catch (InterruptedException i) {
+            i.printStackTrace();
+            System.out.println(i);
+            Thread.currentThread().interrupt();
+        }
+        
+        Robot.pneumatics.extendSingleSolenoid(backLong);
+    }
 
     public void testFullClimb(String swi) {
         if (swi == "UP") {
@@ -195,10 +208,10 @@ public class Climbing {
                 System.out.println(i);
                 Thread.currentThread().interrupt();
             }
-          //  Robot.pneumatics.extendSingleSolenoid(backLong);
+            //Robot.pneumatics.extendSingleSolenoid(backLong);
            // Robot.pneumatics.retractSingleSolenoid(backLong);
             try {
-                Thread.sleep(600);
+                Thread.sleep(0);
                 System.out.println("SLEEPT");
             } catch (InterruptedException i) {
                 i.printStackTrace();
