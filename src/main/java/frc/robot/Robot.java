@@ -40,20 +40,27 @@ public class Robot extends TimedRobot {
 
     driveTrain = new DriveTrain();
     intake = new Intake();
-    //pneumatics = new Pneumatics();
+    pneumatics = new Pneumatics();
     arm = new Arm();
-    //climb = new Climbing();
+    climb = new Climbing();
     joysticks = new Joysticks();
     
     arm.resetStuff(0);
+<<<<<<< HEAD
 
     //Arm.setToZero(); 
+=======
+>>>>>>> 5efb8d56f0f913b27733c999f4c7c32b8c7a753c
   }
 
   @Override
   public void robotPeriodic() {
     //arm.printPosition();
+<<<<<<< HEAD
     //Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
+=======
+    Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
+>>>>>>> 5efb8d56f0f913b27733c999f4c7c32b8c7a753c
 
   }
 
