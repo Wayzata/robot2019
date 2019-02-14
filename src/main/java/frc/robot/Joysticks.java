@@ -33,7 +33,7 @@ public class Joysticks {
 
     public void checkButtons() {
         if (leftJoy.getRawButton(3)) {
-            Arm.startShoulder(0);
+            Arm.setToZero();
         } else if (leftJoy.getRawButton(4)) {
             Arm.setShouldMoveFlag(false);
             // Robot.arm.resetStuff(0);
@@ -50,6 +50,18 @@ public class Joysticks {
             Arm.startShoulder(midCargoRocket);
         } else if (leftJoy.getRawButton(12)) {
             Arm.startShoulder(cargoShip);
+        }
+
+        if(leftJoy.getTrigger()){
+            Robot.climb.testFullClimb("UP");
+        }else if(rightJoy.getTrigger()){
+            Robot.climb.testFullClimb("DOWN");
+        }
+
+        if (leftJoy.getRawButton(2)){
+            Robot.climb.testPivotPiston("OUT");
+        } else if (rightJoy.getRawButton(2)){
+            Robot.climb.testPivotPiston("IN");
         }
 
         if (leftJoy.getRawButton(5)) {

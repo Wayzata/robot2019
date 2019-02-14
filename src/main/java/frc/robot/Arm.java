@@ -83,6 +83,11 @@ public class Arm {
             return;
         }
 
+        if (!shoulderLimitSwitch.get()) {
+            currShoulderPos = 0;
+            desiredShoulderPos = currShoulderPos;
+        }
+
         switch (shoulderDirection) {
         case "up":
             if (shouldMove(shoulderDirection, currShoulderPos, desiredShoulderPos)) {
@@ -120,7 +125,7 @@ public class Arm {
 
     public static void startShoulder(double pos) {
         desiredShoulderPos = pos;
-        //desiredShoulderPos = shoulderDegreesToTicks(pos);
+        // desiredShoulderPos = shoulderDegreesToTicks(pos);
         // desiredShoulderPos = pos;
         System.out.println("current pos: " + currShoulderPos);
         System.out.println("SET DES TO: " + desiredShoulderPos);
@@ -139,7 +144,7 @@ public class Arm {
 
     public static void startWrist(double pos) {
         desiredShoulderPos = pos;
-        //desiredShoulderPos = shoulderDegreesToTicks(pos);
+        // desiredShoulderPos = shoulderDegreesToTicks(pos);
         // desiredShoulderPos = pos;
         System.out.println("current pos: " + currWristPos);
         System.out.println("SET DES TO: " + desiredWristPos);
@@ -196,10 +201,14 @@ public class Arm {
         }
     }
 
-    public static void setToZero(){
-        while(shoulderLimitSwitch.get()){
-            leftShoulderMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
-        }
+    public static void setToZero() {
+        startShoulder(100000);
+        /*
+         * long time = System.currentTimeMillis(); while(shoulderLimitSwitch.get() &&
+         * ((System.currentTimeMillis() - time) < 5000)) {
+         * //System.out.println(shoulderLimitSwitch.get());
+         * leftShoulderMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed); }
+         */
     }
 
     public static void moveEncoder(double pos) {

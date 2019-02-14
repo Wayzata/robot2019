@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
   public static Climbing climb;
   public static Joysticks joysticks;
   public static Intake intake;
+  public boolean zeroFlag = true;
 
   @Override
   public void robotInit() {
@@ -39,20 +40,27 @@ public class Robot extends TimedRobot {
 
     driveTrain = new DriveTrain();
     intake = new Intake();
-    //pneumatics = new Pneumatics();
+    pneumatics = new Pneumatics();
     arm = new Arm();
-    //climb = new Climbing();
+    climb = new Climbing();
     joysticks = new Joysticks();
     
     arm.resetStuff(0);
+<<<<<<< HEAD
 
-    Arm.setToZero();
+    //Arm.setToZero(); 
+=======
+>>>>>>> 5efb8d56f0f913b27733c999f4c7c32b8c7a753c
   }
 
   @Override
   public void robotPeriodic() {
-    arm.printPosition();
+    //arm.printPosition();
+<<<<<<< HEAD
+    //Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
+=======
     Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
+>>>>>>> 5efb8d56f0f913b27733c999f4c7c32b8c7a753c
 
   }
 
@@ -78,6 +86,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    if(zeroFlag) {
+      Arm.setToZero();
+      zeroFlag = false;
+    }
     
     joysticks.checkButtons();
     //Arm.startThing();
