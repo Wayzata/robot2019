@@ -33,7 +33,7 @@ public class Joysticks {
 
     public void checkButtons() {
         if (leftJoy.getRawButton(3)) {
-            Arm.startShoulder(0);
+            Arm.setToZero();
         } else if (leftJoy.getRawButton(4)) {
             Arm.setShouldMoveFlag(false);
             // Robot.arm.resetStuff(0);
