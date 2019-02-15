@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 //one motor rev = 7 pulses; gearbox is 188:1 ratio; external gearing is 2.25:1
 //X pulses per degree; Or maybe 2.63
 
-//Authors: Cameron, Drake, Divyam, (Add here)
+//Authors: Cameron, Drake, Divyam, Rafael, (Add here)
 
 public class Arm {
 

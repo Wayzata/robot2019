@@ -3,7 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DriverStation;
 
-//Authors: ... (Add here)
+//Authors: Jack, Preeti, Rafael, (Add here)
 
 public class Joysticks {
 
