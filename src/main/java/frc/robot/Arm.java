@@ -71,9 +71,24 @@ public class Arm {
         }
     }
 
-    public static void setToZero(){
+    public static void setShoulderToZero(){
         leftShoulderMotor.setSelectedSensorPosition(0);
         currShoulderPos = 0;
+    }
+
+    public static void moveWristToZero(){
+        wristMotor.set(ControlMode.PercentOutput, Variables.wristResetSpeed);
+
+        try{
+            Thread.sleep(500);
+        } catch(InterruptedException e){
+            e.printStackTrace();
+        }
+
+        wristMotor.set(ControlMode.PercentOutput, 0);
+
+        wristMotor.setSelectedSensorPosition(0);
+        currWristPos = 0;
     }
 
     // Press button 4, should move up
@@ -88,7 +103,7 @@ public class Arm {
             return;
         }
 
-        if (shoulderLimitSwitch.get()) {
+        if (shoulderLimitSwitch.get() && shoulderDirection.equalsIgnoreCase("down")) {
             currShoulderPos = 0;
             desiredShoulderPos = currShoulderPos;
         }

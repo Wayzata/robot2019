@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -53,6 +56,7 @@ public class Robot extends TimedRobot {
     arm.printPosition();
     //System.out.println("Limit!: " + Arm.shoulderLimitSwitch.get());
     Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
+    //System.out.println("Battery Voltage: " + DriverStation.getInstance().getBatteryVoltage());
 
   }
 
@@ -82,6 +86,8 @@ public class Robot extends TimedRobot {
       //Arm.setToZero();
       zeroFlag = false;
     }
+
+    Arm.wristMotor.set(ControlMode.PercentOutput, 0);
     
     joysticks.checkButtons();
     //Arm.startThing();

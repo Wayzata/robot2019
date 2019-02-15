@@ -48,7 +48,7 @@ public class Intake {
 
     // retracts the intake piston
     public void retractIntakePiston(){
-        Pneumatics.extendSingleSolenoid(piston);
+        Pneumatics.retractSingleSolenoid(piston);
         pistonExtended = false;
     }
 }
