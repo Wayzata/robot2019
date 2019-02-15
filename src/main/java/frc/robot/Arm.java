@@ -25,7 +25,7 @@ public class Arm {
 
     static TalonSRX testEncoder;
 
-    private static DigitalInput shoulderLimitSwitch;
+    public static DigitalInput shoulderLimitSwitch;
 
     private static double currWristPos = 0;
     public static double currShoulderPos = 0;
@@ -71,6 +71,11 @@ public class Arm {
         }
     }
 
+    public static void setToZero(){
+        leftShoulderMotor.setSelectedSensorPosition(0);
+        currShoulderPos = 0;
+    }
+
     // Press button 4, should move up
     // Robot arm moves up
     // keep moving down
@@ -83,7 +88,7 @@ public class Arm {
             return;
         }
 
-        if (!shoulderLimitSwitch.get()) {
+        if (shoulderLimitSwitch.get()) {
             currShoulderPos = 0;
             desiredShoulderPos = currShoulderPos;
         }
@@ -199,16 +204,6 @@ public class Arm {
             System.out.println("Not Moving; This should not happen");
             break;
         }
-    }
-
-    public static void setToZero() {
-        startShoulder(100000);
-        /*
-         * long time = System.currentTimeMillis(); while(shoulderLimitSwitch.get() &&
-         * ((System.currentTimeMillis() - time) < 5000)) {
-         * //System.out.println(shoulderLimitSwitch.get());
-         * leftShoulderMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed); }
-         */
     }
 
     public static void moveEncoder(double pos) {

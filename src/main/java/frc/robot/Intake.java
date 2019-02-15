@@ -17,16 +17,17 @@ public class Intake {
     // This controls the motors for the intake motors
     private TalonSRX wheelMotor;
 
+    public boolean pistonExtended;
     // Initializes motors and talons
     public Intake(){
         piston = new Solenoid(Variables.intakeSolenoid);
-
+        pistonExtended = false;
         wheelMotor = new TalonSRX(Variables.intakeTalon);
     }
 
     // turns on the motors for intake
     public void activateIntakeMotors(){
-        wheelMotor.set(ControlMode.PercentOutput, Variables.intakeMotorSpeed);
+        wheelMotor.set(ControlMode.PercentOutput, -1 * Variables.intakeMotorSpeed);
     }
 
     // stops the motors
@@ -40,12 +41,14 @@ public class Intake {
     }
 
     // extends the ouput piston
-    public void extendOutputPiston(){ //Han shot firstx
-        piston.set(true);
+    public void extendIntakePiston(){ //Han shot firstx
+        Pneumatics.extendSingleSolenoid(piston);
+        pistonExtended = true;
     }
 
     // retracts the intake piston
     public void retractIntakePiston(){
-        piston.set(false);
+        Pneumatics.extendSingleSolenoid(piston);
+        pistonExtended = false;
     }
 }

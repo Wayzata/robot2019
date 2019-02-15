@@ -45,12 +45,13 @@ public class Robot extends TimedRobot {
     climb = new Climbing();
     joysticks = new Joysticks();
     
-    arm.resetStuff(0);
+    //Arm.setToZero();
   }
 
   @Override
   public void robotPeriodic() {
-    //arm.printPosition();
+    arm.printPosition();
+    //System.out.println("Limit!: " + Arm.shoulderLimitSwitch.get());
     Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
 
   }
@@ -85,9 +86,11 @@ public class Robot extends TimedRobot {
     joysticks.checkButtons();
     //Arm.startThing();
     //driveTrain.drive();
-    //driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
+    driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
   }
   @Override
   public void testPeriodic() {
+    
   }
 }
+

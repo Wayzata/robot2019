@@ -9,7 +9,7 @@ public class Joysticks {
     Joystick leftJoy, rightJoy;
 
     // Ground cargo pickup
-    public static final double cargoFloor = 0;
+    public static final double cargoFloor = 10000;
     // Low hatch player-station/ship/rocket
     public static final double lowHatch = -500;
     // Low cargo rocket
@@ -71,8 +71,17 @@ public class Joysticks {
         if (leftJoy.getRawButton(5)) {
             Robot.intake.activateIntakeMotors();
         } else if (leftJoy.getRawButton(6)) {
+            Robot.intake.reverseIntakeMotors();
+        } else{
             Robot.intake.stopIntakeMotors();
         }
+
+        if (rightJoy.getRawButton(3)){
+            Robot.intake.extendIntakePiston();
+        } else if (rightJoy.getRawButton(4)){
+            Robot.intake.retractIntakePiston();
+        }
+
 
         // Robot.climb.checkClimbButtons();
 

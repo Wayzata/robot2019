@@ -27,7 +27,7 @@ public class Variables {
     static int shoulderLimitSwitchPort = 9;
 
     //Wrist Motors
-    static int wristMotor = 6;
+    static int wristMotor = 7;
 
     //Motor Speeds
     static double shoulderSpeed = 0.5;
@@ -42,8 +42,8 @@ public class Variables {
     static int climbDown = 0;
 
     //Intake
-    public static final int intakeTalon = 25;
-    public static final int intakeSolenoid = 7;
+    public static final int intakeTalon = 6;
+    public static final int intakeSolenoid = 4;
     public static final double intakeMotorSpeed = .5;
     public static final double outputMotorSpeed = .5;
    
