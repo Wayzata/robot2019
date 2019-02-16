@@ -52,6 +52,7 @@ public class Arm {
         shoulderMotor = new TalonSRX(Variables.leftShoulderMotor);
 
         shoulderLimitSwitch = new DigitalInput(Variables.shoulderLimitSwitchPort);
+        
     }
 
     /*
@@ -243,6 +244,36 @@ public class Arm {
                 wristDirection = "yeeted";
             }
             break;
+        }
+    }
+
+    public static void checkNewWrist(){
+
+        if(!wristMoveFlag){
+            return;
+        }
+
+        if(currWristPos - desiredWristPos < -1 * Variables.wristError){
+            wristMotor.set(ControlMode.PercentOutput, Variables.wristSpeed);
+        } else if (currWristPos - desiredWristPos > Variables.wristError){
+            wristMotor.set(ControlMode.PercentOutput, -1 * Variables.wristSpeed);
+        } else{
+            wristMotor.set(ControlMode.PercentOutput, 0);
+        }
+    }
+
+    public static void checkNewShoulder(){
+        
+        if(!shoulderMoveFlag){
+            return;
+        }
+
+        if(currShoulderPos - desiredShoulderPos < -1 * Variables.shoulderError){
+            shoulderMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
+        } else if (currShoulderPos - desiredShoulderPos > Variables.shoulderError){
+            shoulderMotor.set(ControlMode.PercentOutput, Variables.shoulderSpeed);
+        } else {
+            shoulderMotor.set(ControlMode.PercentOutput, 0);
         }
     }
 

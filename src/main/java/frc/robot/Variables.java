@@ -24,6 +24,8 @@ public class Variables {
     // Shoulder Motors
     public static final int leftShoulderMotor = 5;
     public static final int shoulderLimitSwitchPort = 9;
+    // Margin of error for the shoulder
+    public static final double shoulderError = 500;
 
     // -----------------Shoulder Positions-----------------------------------
     // Shoulder position for picking cargo up off of the floor
@@ -43,6 +45,8 @@ public class Variables {
 
     // Wrist Motors
     public static final int wristMotor = 7;
+    // Margin of error on the wrist
+    public static final double wristError = 300;
 
     // -----------------Wrist Positions-----------------------------------
     // Wrist position for picking up hatches from PlayerStation and placing hatches
