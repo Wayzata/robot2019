@@ -2,7 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-//Authors: Jack, Preeti, Rafael, (Add here)
+//Authors: Jack, Preeti, Rafael, Divyam, (Add here)
 
 public class Joysticks {
 

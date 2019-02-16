@@ -22,7 +22,9 @@ public class Intake {
     // This is the switch that monitors if the top flap is up or down
     public DigitalInput limitSwitch;
 
+    // This is the target position of the flap
     public String desiredPos;
+    // This indicates whether or not the flap is moving to a new position
     public boolean flapMoveFlag;
 
     // Initializes motors and talons
@@ -61,6 +63,7 @@ public class Intake {
         pistonExtended = false;
     }
 
+    // sets the desired flap position and begins moving the intake motors
     public void startFlap(String pos) {
         desiredPos = pos;
         flapMoveFlag = true;
@@ -68,6 +71,8 @@ public class Intake {
         checkFlap();
     }
 
+    // Checks the position of the flap and stops the intake motors at the
+    // appropriate time
     public void checkFlap() {
 
         if (!flapMoveFlag) {

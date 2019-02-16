@@ -102,13 +102,17 @@ public class Arm {
         currWristPos = 0;
     }
 
-    //
+    // Starts moving the wrist backwards
     public static void startWristReset() {
         wristResetFlag = true;
         wristMotor.set(ControlMode.PercentOutput, Variables.wristResetSpeed);
         resetTime = System.currentTimeMillis();
+
+        checkWristReset();
     }
 
+    // Checks how long the wrist has been resetting and stops it after a certain
+    // amount of time
     public static void checkWristReset() {
 
         if (!wristResetFlag) {
@@ -278,6 +282,7 @@ public class Arm {
         System.out.println("Current Position: " + shoulderMotor.getSelectedSensorPosition());
     }
 
+    // Prints the value of the wrist encoder
     public void printWristPosition() {
         System.out.println("Current Position: " + wristMotor.getSelectedSensorPosition());
     }
