@@ -27,7 +27,7 @@ public class Vision {
     private UsbCamera camera;
     // This variable controls the thread used for vision processing
     private VisionThread visionThread;
-    // This Array of Hulls stores the output of the GRIP algorithm
+    // This Array of bounding boxes stores the output of the GRIP algorithm
     private Rect[] boundingBoxes;
     // This variable is true if there are valid vision targets in sight and false
     // otherwise

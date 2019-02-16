@@ -1,77 +1,58 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.DriverStation;
 
 //Authors: Jack, Preeti, Rafael, (Add here)
 
 public class Joysticks {
 
+    // These are the two joysticks used for driving and other controls
     Joystick leftJoy, rightJoy;
 
-    // Ground cargo pickup
-    public static final double cargoFloor = 10000;
-    // Low hatch player-station/ship/rocket
-    public static final double lowHatch = -500;
-    // Low cargo rocket
-    public static final double lowCargoRocket = -600;
-    // middle hatch placement
-    public static final double midHatchRocket = -2264;
-    // middle cargo placement
-    public static final double midCargoRocket = -3750;
-    // ship cargo
-    public static final double cargoShip = -2500;
-
-    // wrist hatch
-    public static final double wristHatch = 500;
-    // wrist cargo
-    public static final double wristCargo = 1000;
-
-    // wrist position for panels
-    public static final double hatchWrist = 7;
-    // wrist position for cargo
-    public static final double cargoWrist = 8;
-
     public Joysticks() {
+        // Initializes the Joysticks
         leftJoy = new Joystick(Variables.joyLeftPort);
         rightJoy = new Joystick(Variables.joyRightPort);
     }
 
     public void checkButtons() {
-        if (leftJoy.getRawButton(3)) {
-           // Arm.setToZero();
-        } else if (leftJoy.getRawButton(4)) {
-            Arm.setShouldMoveFlag(false);
-            // Robot.arm.resetStuff(0);
+        // This if-block moves the arm to the given position.
+        if (leftJoy.getRawButton(4)) {
+            // Stops the shoulder
             Robot.arm.stopShoulder();
         } else if (leftJoy.getRawButton(7)) {
-            Arm.startShoulder(cargoFloor);
-            Arm.startWrist(wristHatch);
+            Arm.startShoulder(Variables.cargoFloor);
+            Arm.startWrist(Variables.hatchWrist);
         } else if (leftJoy.getRawButton(8)) {
-            Arm.startShoulder(lowHatch);
-            Arm.startWrist(wristHatch);
+            Arm.startShoulder(Variables.hatchLow);
+            Arm.startWrist(Variables.hatchWrist);
         } else if (leftJoy.getRawButton(9)) {
-            Arm.startShoulder(lowCargoRocket);
-            Arm.startShoulder(wristCargo);
+            Arm.startShoulder(Variables.cargoLowRocket);
+            Arm.startShoulder(Variables.cargoWrist);
         } else if (leftJoy.getRawButton(10)) {
-            Arm.startShoulder(midHatchRocket);
-            Arm.startShoulder(wristHatch);
+            Arm.startShoulder(Variables.hatchMidRocket);
+            Arm.startShoulder(Variables.hatchWrist);
         } else if (leftJoy.getRawButton(11)) {
-            Arm.startShoulder(midCargoRocket);
-            Arm.startShoulder(wristCargo);
+            Arm.startShoulder(Variables.cargoMidRocket);
+            Arm.startShoulder(Variables.cargoWrist);
         } else if (leftJoy.getRawButton(12)) {
-            Arm.startShoulder(cargoShip);
-            Arm.startShoulder(wristCargo);
-        } else if (rightJoy.getRawButton(5)){
+            Arm.startShoulder(Variables.cargoShip);
+            Arm.startShoulder(Variables.cargoWrist);
+        }
+
+        if (rightJoy.getRawButton(5)){
+            // This moves the wrist back and sets the encoder value to zero
             Arm.moveWristToZero();
         }
 
+        // This if-block extends and retracts the climbing pistons
         if(leftJoy.getTrigger()){
             Robot.climb.testFullClimb("UP");
         }else if(rightJoy.getTrigger()){
             Robot.climb.testFullClimb("DOWN");
         }
 
+        // This if-block extends and retracts the pivot piston
         if (leftJoy.getRawButton(2)){
             Robot.climb.testPivotPiston("OUT");
         } else if (rightJoy.getRawButton(2)){
@@ -82,6 +63,8 @@ public class Joysticks {
             Robot.climb.testLongClimb();
         }
 
+        // This if-block controls the intake motors
+        // These motors move when the corresponding buttons are held down
         if (leftJoy.getRawButton(5)) {
             Robot.intake.activateIntakeMotors();
         } else if (leftJoy.getRawButton(6)) {
@@ -90,31 +73,12 @@ public class Joysticks {
             Robot.intake.stopIntakeMotors();
         }
 
+        // This if-block extends and retracts the intake piston
         if (rightJoy.getRawButton(3)){
             Robot.intake.extendIntakePiston();
         } else if (rightJoy.getRawButton(4)){
             Robot.intake.retractIntakePiston();
         }
-
-        //if((DriverStation.getInstance().getBatteryVoltage()) < 11.5){
-        //    System.out.println("My battery is low and it is getting dark");
-        //}
-
-
-
-        // Robot.climb.checkClimbButtons();
-
-        /// ***Arm State Checking ***///
-        Arm.checkShoulder();
-
-        if (Arm.wristMoveFlag) {
-            Arm.checkWrist();
-        }
-
-        // Buttons for Arm methods
-        // Buttons for Intake methods
-        // Buttons for Climbing methods
-        // Any other buttons we need
 
     }
 }

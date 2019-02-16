@@ -1,16 +1,16 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 
 //Authors: ... (Add here)
 
 public class Pneumatics {
-    // DoubleSolenoid armsSolenoid;
-    //DoubleSolenoid shooterSolenoid;
-    Compressor compressor;
-    boolean armsOut;
-    boolean shooterOut;
+  
+  // This variable controls the onboard compressor
+  Compressor compressor;
+
+  boolean armsOut;
+  boolean shooterOut;
 
   public Pneumatics(){
     // armsSolenoid = new DoubleSolenoid(1, 2, 3);
@@ -22,10 +22,12 @@ public class Pneumatics {
 
   }
 
+  // This method extends the given solenoid
   public static void extendSingleSolenoid(Solenoid solenoid) {
 		solenoid.set(true);
   }
 
+  // This method retracts the given solenoid
   public static void retractSingleSolenoid(Solenoid solenoid) {
     solenoid.set(false);
   }

@@ -3,7 +3,6 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 
 //Authors: Nathanael, Dillan
@@ -17,7 +16,9 @@ public class Intake {
     // This controls the motors for the intake motors
     private TalonSRX wheelMotor;
 
+    // This variable stores whether or not the intake piston is extended
     public boolean pistonExtended;
+
     // Initializes motors and talons
     public Intake(){
         piston = new Solenoid(Variables.intakeSolenoid);
@@ -41,7 +42,7 @@ public class Intake {
     }
 
     // extends the ouput piston
-    public void extendIntakePiston(){ //Han shot firstx
+    public void extendIntakePiston(){ //Han shot first
         Pneumatics.extendSingleSolenoid(piston);
         pistonExtended = true;
     }

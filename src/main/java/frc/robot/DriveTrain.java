@@ -25,9 +25,6 @@ public class DriveTrain {
         frontRight = new TalonSRX(Variables.fRightMotor);
         backRight = new TalonSRX(Variables.bRightMotor);
 
-        //Used for ??
-        //double currentPos = 0;
-
     }
 
     //Method used for autonomous programing, stops motors
@@ -74,11 +71,7 @@ public class DriveTrain {
 
     }
 
-    //Lol what
-    public void resetStuff(int x) {
-        frontRight.setSelectedSensorPosition(x);
-    }
-
+    // Sets all four motors to a given speed
     public void driveForward(double speed) {
         backLeft.set(ControlMode.PercentOutput, speed);
         frontLeft.set(ControlMode.PercentOutput, speed);
@@ -87,6 +80,5 @@ public class DriveTrain {
         frontLeft.set(ControlMode.PercentOutput, speed);
 
     }
-    //Testing comment
 
 }

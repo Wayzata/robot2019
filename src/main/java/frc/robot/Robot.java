@@ -2,7 +2,6 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -53,11 +52,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    arm.printPosition();
+    arm.printShoulderPosition();
     //System.out.println("Limit!: " + Arm.shoulderLimitSwitch.get());
-    Arm.setCurrPos(Arm.leftShoulderMotor.getSelectedSensorPosition());
-    //System.out.println("Battery Voltage: " + DriverStation.getInstance().getBatteryVoltage());
-
   }
 
   @Override
@@ -82,18 +78,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    if(zeroFlag) {
-      //Arm.setToZero();
-      zeroFlag = false;
-    }
 
-    Arm.wristMotor.set(ControlMode.PercentOutput, 0);
+    Arm.updateCurrPos();
+
+    Arm.checkShoulder();
+    Arm.checkWrist();
     
     joysticks.checkButtons();
-    //Arm.startThing();
-    //driveTrain.drive();
     driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
   }
+
   @Override
   public void testPeriodic() {
     

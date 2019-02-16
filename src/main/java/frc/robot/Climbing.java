@@ -77,7 +77,7 @@ public class Climbing {
         if (frontPistonUltra.getRangeInches() >= frontDeployDistance && !stageOneCompleted) {
             // Extending front pistons once
             if (!frontExtended) {
-                Robot.pneumatics.extendSingleSolenoid(frontShort);
+                Pneumatics.extendSingleSolenoid(frontShort);
                 // Robot.pneumatics.extendSingleSolenoid(pivotPiston);
                 frontExtended = true;
             }
@@ -87,7 +87,7 @@ public class Climbing {
             }
             // Extending back once above loop is no longer true
             if (!backExtended) {
-                Robot.pneumatics.extendSingleSolenoid(backShort);
+                Pneumatics.extendSingleSolenoid(backShort);
                 stageOneCompleted = true;
                 backExtended = true;
             }
@@ -96,11 +96,11 @@ public class Climbing {
         if (stageOneCompleted) {
             Robot.driveTrain.driveForward(0.25);
             if (frontExtended) {
-                Robot.pneumatics.retractSingleSolenoid(frontShort);
+                Pneumatics.retractSingleSolenoid(frontShort);
                 frontExtended = false;
             }
             if (backExtended) {
-                Robot.pneumatics.retractSingleSolenoid(backShort);
+                Pneumatics.retractSingleSolenoid(backShort);
                 backExtended = false;
             }
             climbingDownCompleted = true;
@@ -112,10 +112,10 @@ public class Climbing {
 
         // Deploy all pistons
         if (!initialPistonDeploy) {
-            Robot.pneumatics.extendSingleSolenoid(backShort);
-            Robot.pneumatics.extendSingleSolenoid(frontShort);
-            Robot.pneumatics.extendSingleSolenoid(backLong);
-            Robot.pneumatics.extendSingleSolenoid(frontLong);
+            Pneumatics.extendSingleSolenoid(backShort);
+            Pneumatics.extendSingleSolenoid(frontShort);
+            Pneumatics.extendSingleSolenoid(backLong);
+            Pneumatics.extendSingleSolenoid(frontLong);
             initialPistonDeploy = true;
         }
 
@@ -130,7 +130,7 @@ public class Climbing {
 
         // Tipping forward
         if (!pivoted) {
-            Robot.pneumatics.extendSingleSolenoid(pivotPiston);
+            Pneumatics.extendSingleSolenoid(pivotPiston);
             pivoted = true;
         }
 
@@ -138,8 +138,8 @@ public class Climbing {
         Robot.driveTrain.driveForward(0.75);
 
         if (frontUltrasonic.getRangeInches() <= climbingUpRetractDistance && !frontRetracted) {
-            Robot.pneumatics.retractSingleSolenoid(frontLong);
-            Robot.pneumatics.retractSingleSolenoid(frontShort);
+            Pneumatics.retractSingleSolenoid(frontLong);
+            Pneumatics.retractSingleSolenoid(frontShort);
             frontRetracted = true;
         }
 
@@ -147,8 +147,8 @@ public class Climbing {
         while (backPistonUltra.getRangeInches() > climbingUpRetractDistance) {
             Robot.driveTrain.driveForward(0.25);
         }
-        Robot.pneumatics.retractSingleSolenoid(backLong);
-        Robot.pneumatics.retractSingleSolenoid(backShort);
+        Pneumatics.retractSingleSolenoid(backLong);
+        Pneumatics.retractSingleSolenoid(backShort);
 
         climbingUpSuccess = true; // Use this Bool to give controls back to driver for Parking
 
@@ -172,7 +172,7 @@ public class Climbing {
 
     }
     public void testLongClimb(){
-        Robot.pneumatics.extendSingleSolenoid(frontLong);
+        Pneumatics.extendSingleSolenoid(frontLong);
         try {
             Thread.sleep(0);
             System.out.println("SLEEPT");
@@ -182,12 +182,12 @@ public class Climbing {
             Thread.currentThread().interrupt();
         }
         
-        Robot.pneumatics.extendSingleSolenoid(backLong);
+        Pneumatics.extendSingleSolenoid(backLong);
     }
 
     public void testFullClimb(String swi) {
         if (swi == "UP") {
-            Robot.pneumatics.extendSingleSolenoid(backShort);
+            Pneumatics.extendSingleSolenoid(backShort);
            // Robot.pneumatics.retractSingleSolenoid(backLong);
             try {
                 Thread.sleep(0);
@@ -199,7 +199,7 @@ public class Climbing {
             }
             System.out.println("out of sleep");
 
-            Robot.pneumatics.extendSingleSolenoid(frontShort);
+            Pneumatics.extendSingleSolenoid(frontShort);
             try {
                 Thread.sleep(1000);
                 System.out.println("SLEEPT");
@@ -228,18 +228,18 @@ public class Climbing {
             // Robot.pneumatics.extendSingleSolenoid(frontLong);
            // Robot.pneumatics.extendSingleSolenoid(frontShort);
         } else if (swi == "DOWN") {
-            Robot.pneumatics.retractSingleSolenoid(frontShort);
-            Robot.pneumatics.retractSingleSolenoid(backShort);
-            Robot.pneumatics.retractSingleSolenoid(backLong);
-            Robot.pneumatics.retractSingleSolenoid(frontLong);
+            Pneumatics.retractSingleSolenoid(frontShort);
+            Pneumatics.retractSingleSolenoid(backShort);
+            Pneumatics.retractSingleSolenoid(backLong);
+            Pneumatics.retractSingleSolenoid(frontLong);
         }
     }
 
     public void testPivotPiston(String swi) {
         if (swi == "OUT") {
-            Robot.pneumatics.extendSingleSolenoid(pivotPiston);
+            Pneumatics.extendSingleSolenoid(pivotPiston);
         } else if (swi == "IN") {
-            Robot.pneumatics.retractSingleSolenoid(pivotPiston);
+            Pneumatics.retractSingleSolenoid(pivotPiston);
         }
     }
 
