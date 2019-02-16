@@ -31,6 +31,7 @@ public class Arm {
     // These determine whether or not the shoulder or wrist are currently attempting to move
     public static boolean shoulderMoveFlag = false;
     public static boolean wristMoveFlag = false;
+    public static boolean wristResetFlag = false;
 
     // These variables store the target position (in ticks) of the shoulder and wrist
     public static double desiredShoulderPos;
@@ -39,6 +40,8 @@ public class Arm {
     // These variables indicate the current direction of the shoulder and wrist
     public static String shoulderDirection = "yeet";
     public static String wristDirection = "yeeted";
+
+    public static long resetTime;
 
 
     public Arm() {
@@ -94,6 +97,25 @@ public class Arm {
         // Sets the encoder value and current position of the wrist to zero
         wristMotor.setSelectedSensorPosition(0);
         currWristPos = 0;
+    }
+
+    // 
+    public static void startWristReset(){
+        wristResetFlag = true;
+        wristMotor.set(ControlMode.PercentOutput, Variables.wristResetSpeed);
+        resetTime = System.currentTimeMillis();
+    }
+
+    public static void checkWristReset(){
+        
+        if(!wristResetFlag){
+            return;
+        }
+
+        if(System.currentTimeMillis() - resetTime >= Variables.resetTimer){
+            wristMotor.set(ControlMode.PercentOutput, 0);
+            wristResetFlag = false;
+        }
     }
 
     // Sets the current position of the shoulder and wrist to their respective encoder value
@@ -246,5 +268,9 @@ public class Arm {
     // Prints the value of the shoulder encoder
     public void printShoulderPosition() {
         System.out.println("Current Position: " + shoulderMotor.getSelectedSensorPosition());
+    }
+
+    public void printWristPosition(){
+        System.out.println("Current Position: " + wristMotor.getSelectedSensorPosition());
     }
 }

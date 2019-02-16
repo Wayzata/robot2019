@@ -50,6 +50,9 @@ public class Variables {
     // Wrist position for picking up cargo from PlayerStation and placing cargo on CargoShip and RocketShip
     public static final double cargoWrist = 1000;
 
+    // Amount of time that we wrist will move backwards when resetting its position to zero
+    public static final long resetTimer = 500;
+
     // Motor Speeds
     public static final double shoulderSpeed = 0.8;
     public static final double wristSpeed = 0.3;
@@ -65,9 +68,17 @@ public class Variables {
 
     // Intake
     public static final int intakeTalon = 6;
-    public static final int intakeSolenoid = 4;
+    public static final int intakeSolenoid = 3;
     public static final double intakeMotorSpeed = 1;
     public static final double outputMotorSpeed = 1;
+    public static final int intakeLimitSwitchPort = 5; // CHANGE THIS
+
+    // Climbing
+    public static final int frontLongPort = 2;
+    public static final int frontShortPort = 1;
+    public static final int backLongPort = 6;
+    public static final int backShortPort = 4;
+    public static final int pivotPort = 5;
 
     // components
 

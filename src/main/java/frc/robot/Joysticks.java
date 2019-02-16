@@ -40,9 +40,21 @@ public class Joysticks {
             Arm.startShoulder(Variables.cargoWrist);
         }
 
+        if (rightJoy.getRawButton(7)){
+            Arm.startWrist(Variables.hatchWrist);
+        } else if (rightJoy.getRawButton(8)){
+            Arm.startWrist(Variables.cargoWrist);
+        }
+
+        if(rightJoy.getRawButton(9)){
+            Robot.intake.startFlap("up");
+        } else if (rightJoy.getRawButton(10)){
+            Robot.intake.startFlap("down");
+        }
+
         if (rightJoy.getRawButton(5)){
             // This moves the wrist back and sets the encoder value to zero
-            Arm.moveWristToZero();
+            Arm.startWristReset();
         }
 
         // This if-block extends and retracts the climbing pistons

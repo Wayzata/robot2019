@@ -50,11 +50,11 @@ public class Climbing {
         frontUltrasonic = new Ultrasonic(0, 1);
         frontPistonUltra = new Ultrasonic(2, 3);
         backPistonUltra = new Ultrasonic(4, 5);
-        frontLong = new Solenoid(Variables.pcm, 0);
-        frontShort = new Solenoid(Variables.pcm, 1);
-        backLong = new Solenoid(Variables.pcm, 3);
-        backShort = new Solenoid(Variables.pcm, 2);
-        pivotPiston = new Solenoid(Variables.pcm, 5);
+        frontLong = new Solenoid(Variables.pcm, Variables.frontLongPort);
+        frontShort = new Solenoid(Variables.pcm, Variables.frontShortPort);
+        backLong = new Solenoid(Variables.pcm, Variables.backLongPort);
+        backShort = new Solenoid(Variables.pcm, Variables.backShortPort);
+        pivotPiston = new Solenoid(Variables.pcm, Variables.pivotPort);
     }
 
     // Actual code that controls pistons - Can change
