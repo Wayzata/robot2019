@@ -24,7 +24,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   // Objects for the different components of the robot
-  //private static Vision vision;
+  // private static Vision vision;
   public static DriveTrain driveTrain;
   public static Pneumatics pneumatics;
   public static Arm arm;
@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     // Test print-outs
     arm.printWristPosition();
-    //System.out.println("Limit!: " + Arm.shoulderLimitSwitch.get());
+    // System.out.println("Limit!: " + Arm.shoulderLimitSwitch.get());
   }
 
   @Override
@@ -77,7 +77,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-    // Sets the current position of the shoulder and wrist to their respective encoder values
+    // Sets the current position of the shoulder and wrist to their respective
+    // encoder values
     Arm.updateCurrPos();
 
     // Updates the motor values for the shoulder and wrist
@@ -85,16 +86,16 @@ public class Robot extends TimedRobot {
     Arm.checkWrist();
     intake.checkFlap();
     Arm.checkWristReset();
-    
+
     // Checks the buttons and performs the appropriate actions
     joysticks.checkButtons();
+
     // Updates the drivetrain motor values based on where the joysticks are
     driveTrain.tankDrive(joysticks.leftJoy, joysticks.rightJoy);
   }
 
   @Override
   public void testPeriodic() {
-    
+
   }
 }
-

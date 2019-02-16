@@ -171,7 +171,8 @@ public class Climbing {
         }
 
     }
-    public void testLongClimb(){
+
+    public void testLongClimb() {
         Pneumatics.extendSingleSolenoid(frontLong);
         try {
             Thread.sleep(0);
@@ -181,14 +182,14 @@ public class Climbing {
             System.out.println(i);
             Thread.currentThread().interrupt();
         }
-        
+
         Pneumatics.extendSingleSolenoid(backLong);
     }
 
     public void testFullClimb(String swi) {
         if (swi == "UP") {
             Pneumatics.extendSingleSolenoid(backShort);
-           // Robot.pneumatics.retractSingleSolenoid(backLong);
+            // Robot.pneumatics.retractSingleSolenoid(backLong);
             try {
                 Thread.sleep(0);
                 System.out.println("SLEEPT");
@@ -208,8 +209,8 @@ public class Climbing {
                 System.out.println(i);
                 Thread.currentThread().interrupt();
             }
-            //Robot.pneumatics.extendSingleSolenoid(backLong);
-           // Robot.pneumatics.retractSingleSolenoid(backLong);
+            // Robot.pneumatics.extendSingleSolenoid(backLong);
+            // Robot.pneumatics.retractSingleSolenoid(backLong);
             try {
                 Thread.sleep(0);
                 System.out.println("SLEEPT");
@@ -220,13 +221,13 @@ public class Climbing {
             }
             System.out.println("out of sleep");
 
-           // Robot.pneumatics.extendSingleSolenoid(frontLong);
-
-           // Robot.pneumatics.extendSingleSolenoid(frontLong);
-           
-          //  Robot.pneumatics.extendSingleSolenoid(backLong);
             // Robot.pneumatics.extendSingleSolenoid(frontLong);
-           // Robot.pneumatics.extendSingleSolenoid(frontShort);
+
+            // Robot.pneumatics.extendSingleSolenoid(frontLong);
+
+            // Robot.pneumatics.extendSingleSolenoid(backLong);
+            // Robot.pneumatics.extendSingleSolenoid(frontLong);
+            // Robot.pneumatics.extendSingleSolenoid(frontShort);
         } else if (swi == "DOWN") {
             Pneumatics.retractSingleSolenoid(frontShort);
             Pneumatics.retractSingleSolenoid(backShort);

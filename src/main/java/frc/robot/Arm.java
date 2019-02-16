@@ -24,16 +24,19 @@ public class Arm {
     // This is the limit switch used to reset the shoulder encoder
     public static DigitalInput shoulderLimitSwitch;
 
-    // These store the current position (in ticks) relative to a starting position for the shoulder and wrist
+    // These store the current position (in ticks) relative to a starting position
+    // for the shoulder and wrist
     public static double currShoulderPos = 0;
     public static double currWristPos = 0;
 
-    // These determine whether or not the shoulder or wrist are currently attempting to move
+    // These determine whether or not the shoulder or wrist are currently attempting
+    // to move
     public static boolean shoulderMoveFlag = false;
     public static boolean wristMoveFlag = false;
     public static boolean wristResetFlag = false;
 
-    // These variables store the target position (in ticks) of the shoulder and wrist
+    // These variables store the target position (in ticks) of the shoulder and
+    // wrist
     public static double desiredShoulderPos;
     public static double desiredWristPos;
 
@@ -42,7 +45,6 @@ public class Arm {
     public static String wristDirection = "yeeted";
 
     public static long resetTime;
-
 
     public Arm() {
         // Initializes variables
@@ -74,20 +76,21 @@ public class Arm {
     }
 
     // Sets the encoder value and the current position of the shoulder motor to zero
-    public static void setShoulderToZero(){
+    public static void setShoulderToZero() {
         shoulderMotor.setSelectedSensorPosition(0);
         currShoulderPos = 0;
     }
 
-    // Moves the wrist backwards and then sets the encoder value and current position of the wrist motor to zero
-    public static void moveWristToZero(){
+    // Moves the wrist backwards and then sets the encoder value and current
+    // position of the wrist motor to zero
+    public static void moveWristToZero() {
         // Moves the wrist backwards
         wristMotor.set(ControlMode.PercentOutput, Variables.wristResetSpeed);
 
-        try{
+        try {
             // Waits as the wrist moves backwards
             Thread.sleep(500);
-        } catch(InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -99,32 +102,34 @@ public class Arm {
         currWristPos = 0;
     }
 
-    // 
-    public static void startWristReset(){
+    //
+    public static void startWristReset() {
         wristResetFlag = true;
         wristMotor.set(ControlMode.PercentOutput, Variables.wristResetSpeed);
         resetTime = System.currentTimeMillis();
     }
 
-    public static void checkWristReset(){
-        
-        if(!wristResetFlag){
+    public static void checkWristReset() {
+
+        if (!wristResetFlag) {
             return;
         }
 
-        if(System.currentTimeMillis() - resetTime >= Variables.resetTimer){
+        if (System.currentTimeMillis() - resetTime >= Variables.resetTimer) {
             wristMotor.set(ControlMode.PercentOutput, 0);
             wristResetFlag = false;
         }
     }
 
-    // Sets the current position of the shoulder and wrist to their respective encoder value
-    public static void updateCurrPos(){
+    // Sets the current position of the shoulder and wrist to their respective
+    // encoder value
+    public static void updateCurrPos() {
         currShoulderPos = shoulderMotor.getSelectedSensorPosition();
         currWristPos = wristMotor.getSelectedSensorPosition();
     }
 
-    // Checks and stops the shoulder motor if the shoulder has reached its desired position
+    // Checks and stops the shoulder motor if the shoulder has reached its desired
+    // position
     public static void checkShoulder() {
 
         // Ends the method if the flag is not active
@@ -132,14 +137,16 @@ public class Arm {
             return;
         }
 
-        // If the arm is moving down and hits the switch, then it stops the arm and sets it to zero
+        // If the arm is moving down and hits the switch, then it stops the arm and sets
+        // it to zero
         if (shoulderLimitSwitch.get() && shoulderDirection.equalsIgnoreCase("down")) {
             currShoulderPos = 0;
             desiredShoulderPos = 0;
             shoulderMoveFlag = false;
         }
 
-        // Checks the current position of the shoulder and stops it if it has reached its desired position
+        // Checks the current position of the shoulder and stops it if it has reached
+        // its desired position
         switch (shoulderDirection) {
         case "up":
             if (shouldMove(shoulderDirection, currShoulderPos, desiredShoulderPos)) {
@@ -177,7 +184,7 @@ public class Arm {
         } else if (shouldMove("down", currShoulderPos, desiredShoulderPos)) {
             shoulderDirection = "down";
         }
-        
+
         // Starts the shoulder motor
         shoulderMoveFlag = true;
         checkShoulder();
@@ -200,14 +207,16 @@ public class Arm {
         checkShoulder();
     }
 
-    // Checks the current position of the wrist and stops it if it has reached its desired position
+    // Checks the current position of the wrist and stops it if it has reached its
+    // desired position
     public static void checkWrist() {
         // Ends the method if the flag is not active
         if (!wristMoveFlag) {
             return;
         }
 
-        // Checks the current position of the wrist and stops it if it has reached its desired position
+        // Checks the current position of the wrist and stops it if it has reached its
+        // desired position
         switch (wristDirection) {
         case "up":
             if (shouldMove(wristDirection, currWristPos, desiredWristPos)) {
@@ -237,7 +246,6 @@ public class Arm {
     public double getCurrShoulder() {
         return currShoulderPos;
     }
-
 
     // Returns the current position (in ticks) of the wrist
     public double getCurrWrist() {
@@ -270,7 +278,7 @@ public class Arm {
         System.out.println("Current Position: " + shoulderMotor.getSelectedSensorPosition());
     }
 
-    public void printWristPosition(){
+    public void printWristPosition() {
         System.out.println("Current Position: " + wristMotor.getSelectedSensorPosition());
     }
 }

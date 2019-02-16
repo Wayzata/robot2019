@@ -28,7 +28,8 @@ public class Variables {
     // -----------------Shoulder Positions-----------------------------------
     // Shoulder position for picking cargo up off of the floor
     public static final double cargoFloor = 10000;
-    // Shoulder position for placing hatches on the low goal on CargoShip and RocketShip
+    // Shoulder position for placing hatches on the low goal on CargoShip and
+    // RocketShip
     // This position is also used for picking up hatches from PlayerStation
     public static final double hatchLow = -500;
     // Shoulder position for placing cargo on the low goal on CargoShip
@@ -40,17 +41,19 @@ public class Variables {
     // Shoulder position for placing cargo on CargoShip
     public static final double cargoShip = -2500;
 
-
     // Wrist Motors
     public static final int wristMotor = 7;
 
     // -----------------Wrist Positions-----------------------------------
-    // Wrist position for picking up hatches from PlayerStation and placing hatches on CargoShip and RocketShip
+    // Wrist position for picking up hatches from PlayerStation and placing hatches
+    // on CargoShip and RocketShip
     public static final double hatchWrist = 500;
-    // Wrist position for picking up cargo from PlayerStation and placing cargo on CargoShip and RocketShip
+    // Wrist position for picking up cargo from PlayerStation and placing cargo on
+    // CargoShip and RocketShip
     public static final double cargoWrist = 1000;
 
-    // Amount of time that we wrist will move backwards when resetting its position to zero
+    // Amount of time that we wrist will move backwards when resetting its position
+    // to zero
     public static final long resetTimer = 500;
 
     // Motor Speeds

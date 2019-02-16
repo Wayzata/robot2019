@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 public class Intake {
 
-
     // This solenoid controls the piston used in ejecting the disk
     private Solenoid piston;
 
@@ -27,7 +26,7 @@ public class Intake {
     public boolean flapMoveFlag;
 
     // Initializes motors and talons
-    public Intake(){
+    public Intake() {
         piston = new Solenoid(Variables.intakeSolenoid);
         pistonExtended = false;
         flapMoveFlag = false;
@@ -36,61 +35,61 @@ public class Intake {
     }
 
     // turns on the motors for intake
-    public void activateIntakeMotors(){
+    public void activateIntakeMotors() {
         wheelMotor.set(ControlMode.PercentOutput, -1 * Variables.intakeMotorSpeed);
     }
 
     // stops the motors
-    public void stopIntakeMotors(){
+    public void stopIntakeMotors() {
         wheelMotor.set(ControlMode.PercentOutput, 0);
     }
 
     // turns on the motors for output
-    public void reverseIntakeMotors(){
+    public void reverseIntakeMotors() {
         wheelMotor.set(ControlMode.PercentOutput, Variables.outputMotorSpeed);
     }
 
     // extends the ouput piston
-    public void extendIntakePiston(){ //Han shot first
+    public void extendIntakePiston() {
         Pneumatics.extendSingleSolenoid(piston);
         pistonExtended = true;
     }
 
     // retracts the intake piston
-    public void retractIntakePiston(){
+    public void retractIntakePiston() {
         Pneumatics.retractSingleSolenoid(piston);
         pistonExtended = false;
     }
 
-    public void startFlap(String pos){
+    public void startFlap(String pos) {
         desiredPos = pos;
         flapMoveFlag = true;
 
         checkFlap();
     }
 
-    public void checkFlap(){
+    public void checkFlap() {
 
-        if(!flapMoveFlag){
+        if (!flapMoveFlag) {
             return;
         }
 
-        switch(desiredPos){
-            case "up":
-                if(limitSwitch.get()){
-                    activateIntakeMotors();
-                } else{
-                    stopIntakeMotors();
-                    flapMoveFlag = false;
-                }
+        switch (desiredPos) {
+        case "up":
+            if (limitSwitch.get()) {
+                activateIntakeMotors();
+            } else {
+                stopIntakeMotors();
+                flapMoveFlag = false;
+            }
             break;
-            case "down":
-                if(!limitSwitch.get()){
-                    activateIntakeMotors();
-                } else{
-                    stopIntakeMotors();
-                    flapMoveFlag = false;
-                }
+        case "down":
+            if (!limitSwitch.get()) {
+                activateIntakeMotors();
+            } else {
+                stopIntakeMotors();
+                flapMoveFlag = false;
+            }
             break;
         }
     }

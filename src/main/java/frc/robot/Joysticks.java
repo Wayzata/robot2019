@@ -40,38 +40,38 @@ public class Joysticks {
             Arm.startShoulder(Variables.cargoWrist);
         }
 
-        if (rightJoy.getRawButton(7)){
+        if (rightJoy.getRawButton(7)) {
             Arm.startWrist(Variables.hatchWrist);
-        } else if (rightJoy.getRawButton(8)){
+        } else if (rightJoy.getRawButton(8)) {
             Arm.startWrist(Variables.cargoWrist);
         }
 
-        if(rightJoy.getRawButton(9)){
+        if (rightJoy.getRawButton(9)) {
             Robot.intake.startFlap("up");
-        } else if (rightJoy.getRawButton(10)){
+        } else if (rightJoy.getRawButton(10)) {
             Robot.intake.startFlap("down");
         }
 
-        if (rightJoy.getRawButton(5)){
+        if (rightJoy.getRawButton(5)) {
             // This moves the wrist back and sets the encoder value to zero
             Arm.startWristReset();
         }
 
         // This if-block extends and retracts the climbing pistons
-        if(leftJoy.getTrigger()){
+        if (leftJoy.getTrigger()) {
             Robot.climb.testFullClimb("UP");
-        }else if(rightJoy.getTrigger()){
+        } else if (rightJoy.getTrigger()) {
             Robot.climb.testFullClimb("DOWN");
         }
 
         // This if-block extends and retracts the pivot piston
-        if (leftJoy.getRawButton(2)){
+        if (leftJoy.getRawButton(2)) {
             Robot.climb.testPivotPiston("OUT");
-        } else if (rightJoy.getRawButton(2)){
+        } else if (rightJoy.getRawButton(2)) {
             Robot.climb.testPivotPiston("IN");
         }
 
-        if (leftJoy.getRawButton(3)){
+        if (leftJoy.getRawButton(3)) {
             Robot.climb.testLongClimb();
         }
 
@@ -81,14 +81,14 @@ public class Joysticks {
             Robot.intake.activateIntakeMotors();
         } else if (leftJoy.getRawButton(6)) {
             Robot.intake.reverseIntakeMotors();
-        } else{
+        } else {
             Robot.intake.stopIntakeMotors();
         }
 
         // This if-block extends and retracts the intake piston
-        if (rightJoy.getRawButton(3)){
+        if (rightJoy.getRawButton(3)) {
             Robot.intake.extendIntakePiston();
-        } else if (rightJoy.getRawButton(4)){
+        } else if (rightJoy.getRawButton(4)) {
             Robot.intake.retractIntakePiston();
         }
 
