@@ -19,11 +19,12 @@ public class Climbing {
     final double slope = .0090645714;
     final double yint = .0062214286;
     final double ultraMin = 8.0, ultraMax = 9.0;
+    double climbForwardSpeed = .4;
 
     // Ultrasonic Automation Ranges - Different because possible off balance coming
     // off
-    final double frontDeployDistance = 4.0, backDeployDistance = 4.0;
-    final double climbingUpRetractDistance = 2.0;
+    final double frontDeployDistance = 3.0, backDeployDistance = 2.5;
+    final double climbingUpRetractDistance = 3.0;
 
     // Ultrasonic Sensors
     Ultrasonic frontUltrasonic;
@@ -47,9 +48,12 @@ public class Climbing {
     long timeInAuto;
 
     public Climbing() {
-        frontUltrasonic = new Ultrasonic(0, 1);
-        frontPistonUltra = new Ultrasonic(2, 3);
-        backPistonUltra = new Ultrasonic(4, 5);
+        frontUltrasonic = new Ultrasonic(4, 5);
+        frontPistonUltra = new Ultrasonic(0, 1);
+        backPistonUltra = new Ultrasonic(2, 3);
+        frontUltrasonic.setEnabled(true);
+        frontPistonUltra.setEnabled(true);
+        backPistonUltra.setEnabled(true);
         frontLong = new Solenoid(Variables.pcm, Variables.frontLongPort);
         frontShort = new Solenoid(Variables.pcm, Variables.frontShortPort);
         backLong = new Solenoid(Variables.pcm, Variables.backLongPort);
@@ -72,7 +76,7 @@ public class Climbing {
     // Climbing Down automation
     public void ClimbingDown() {
         // Start driving forward 0.5 speed
-        Robot.driveTrain.driveForward(0.25);
+        Robot.driveTrain.driveForward(climbForwardSpeed);
         // Get ultrarange once front piston is off
         if (frontPistonUltra.getRangeInches() >= frontDeployDistance && !stageOneCompleted) {
             // Extending front pistons once
@@ -83,7 +87,7 @@ public class Climbing {
             }
             // Making sure robot continues to drive forward
             while (backPistonUltra.getRangeInches() < backDeployDistance) {
-                Robot.driveTrain.driveForward(0.25);
+                Robot.driveTrain.driveForward(climbForwardSpeed);
             }
             // Extending back once above loop is no longer true
             if (!backExtended) {
@@ -94,7 +98,7 @@ public class Climbing {
         }
         // Bringing robot down and ending auto period
         if (stageOneCompleted) {
-            Robot.driveTrain.driveForward(0.25);
+            Robot.driveTrain.driveForward(climbForwardSpeed);
             if (frontExtended) {
                 Pneumatics.retractSingleSolenoid(frontShort);
                 frontExtended = false;

@@ -2,12 +2,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 
+
 //Authors: Jack, Preeti, Rafael, Divyam, (Add here)
 
 public class Joysticks {
 
     // These are the two joysticks used for driving and other controls
     Joystick leftJoy, rightJoy;
+
+    
 
     public Joysticks() {
         // Initializes the Joysticks
@@ -22,19 +25,19 @@ public class Joysticks {
             Robot.arm.stopShoulder();
         } else if (leftJoy.getRawButton(7)) {
             Arm.startShoulder(Variables.cargoFloor);
-            Arm.startWrist(Variables.hatchWrist);
+            Arm.startWrist(Variables.cargoWrist);
         } else if (leftJoy.getRawButton(8)) {
             Arm.startShoulder(Variables.hatchLow);
             Arm.startWrist(Variables.hatchWrist);
         } else if (leftJoy.getRawButton(9)) {
             Arm.startShoulder(Variables.cargoLowRocket);
-            Arm.startShoulder(Variables.cargoWrist);
+            Arm.startWrist(Variables.cargoWrist);
         } else if (leftJoy.getRawButton(10)) {
             Arm.startShoulder(Variables.hatchMidRocket);
             Arm.startShoulder(Variables.hatchWrist);
         } else if (leftJoy.getRawButton(11)) {
             Arm.startShoulder(Variables.cargoMidRocket);
-            Arm.startShoulder(Variables.cargoWrist);
+            Arm.startWrist(Variables.cargoWrist);
         } else if (leftJoy.getRawButton(12)) {
             Arm.startShoulder(Variables.cargoShip);
             Arm.startShoulder(Variables.cargoWrist);
@@ -44,6 +47,8 @@ public class Joysticks {
             Arm.startWrist(Variables.hatchWrist);
         } else if (rightJoy.getRawButton(8)) {
             Arm.startWrist(Variables.cargoWrist);
+        } else if (rightJoy.getRawButton(12)){
+            Arm.startWristReset();
         }
 
         if (rightJoy.getRawButton(9)) {

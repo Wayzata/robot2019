@@ -2,7 +2,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfigUtil;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 ///***Shoulder Stuff ***///
@@ -85,7 +85,7 @@ public class Arm {
     // position of the wrist motor to zero
     public static void moveWristToZero() {
         // Moves the wrist backwards
-        wristMotor.set(ControlMode.PercentOutput, Variables.wristResetSpeed);
+        wristMotor.set(ControlMode.PercentOutput, -1 * Variables.wristResetSpeed);
 
         try {
             // Waits as the wrist moves backwards
@@ -105,7 +105,7 @@ public class Arm {
     // Starts moving the wrist backwards
     public static void startWristReset() {
         wristResetFlag = true;
-        wristMotor.set(ControlMode.PercentOutput, Variables.wristResetSpeed);
+        wristMotor.set(ControlMode.PercentOutput, -1 * Variables.wristResetSpeed);
         resetTime = System.currentTimeMillis();
 
         checkWristReset();
@@ -121,6 +121,8 @@ public class Arm {
 
         if (System.currentTimeMillis() - resetTime >= Variables.resetTimer) {
             wristMotor.set(ControlMode.PercentOutput, 0);
+            currWristPos = 0;
+            wristMotor.setSelectedSensorPosition(0);
             wristResetFlag = false;
         }
     }
@@ -141,12 +143,15 @@ public class Arm {
             return;
         }
 
+        System.out.println("MOVING THE ARM");
+
         // If the arm is moving down and hits the switch, then it stops the arm and sets
         // it to zero
-        if (shoulderLimitSwitch.get() && shoulderDirection.equalsIgnoreCase("down")) {
+        if (!shoulderLimitSwitch.get() && shoulderDirection.equalsIgnoreCase("down")) {
             currShoulderPos = 0;
             desiredShoulderPos = 0;
             shoulderMoveFlag = false;
+            System.out.println("LIMIT SWITCH IS DOWN");
         }
 
         // Checks the current position of the shoulder and stops it if it has reached

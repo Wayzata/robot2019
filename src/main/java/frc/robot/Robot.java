@@ -3,7 +3,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.wpilibj.XboxController;
+import java.lang.Runtime;
 //Authors: Technical Team
 
 /*
@@ -24,21 +25,21 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   // Objects for the different components of the robot
-  // private static Vision vision;
+  private static Vision vision;
   public static DriveTrain driveTrain;
   public static Pneumatics pneumatics;
   public static Arm arm;
   public static Climbing climb;
   public static Joysticks joysticks;
   public static Intake intake;
-
+  public XboxController xbox= new XboxController(2);
   @Override
   public void robotInit() {
     // Sets up the autonomous options on the SmartDashboard
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-
+  
     // Initializes robot components
     driveTrain = new DriveTrain();
     intake = new Intake();
@@ -46,13 +47,22 @@ public class Robot extends TimedRobot {
     arm = new Arm();
     climb = new Climbing();
     joysticks = new Joysticks();
+    vision = new Vision();
+    
   }
 
   @Override
   public void robotPeriodic() {
     // Test print-outs
-    arm.printWristPosition();
+    arm.printShoulderPosition();
     // System.out.println("Limit!: " + Arm.shoulderLimitSwitch.get());
+    // climb.frontPistonUltra.ping();
+    // climb.backPistonUltra.ping();
+    // climb.frontUltrasonic.ping();
+    // System.out.println("Back Ultra: " + climb.backPistonUltra.getRangeInches());
+    // System.out.println("Mid Ultra: " + climb.frontPistonUltra.getRangeInches());
+    // System.out.println("Front Ultra: " + climb.frontUltrasonic.getRangeInches());
+
   }
 
   @Override
@@ -76,7 +86,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-
+   // if (xbox.getAButtonPressed()){
+      //climb.ClimbingDown();
+   // }
     // Sets the current position of the shoulder and wrist to their respective
     // encoder values
     Arm.updateCurrPos();
@@ -96,6 +108,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
+    
 
   }
 }

@@ -73,11 +73,11 @@ public class DriveTrain {
 
     // Sets all four motors to a given speed
     public void driveForward(double speed) {
-        backLeft.set(ControlMode.PercentOutput, speed);
-        frontLeft.set(ControlMode.PercentOutput, speed);
+        backLeft.set(ControlMode.PercentOutput,  speed);
+        backRight.set(ControlMode.PercentOutput, -1*speed);
 
-        backRight.set(ControlMode.PercentOutput, speed);
-        frontLeft.set(ControlMode.PercentOutput, speed);
+        frontRight.set(ControlMode.PercentOutput, -1*speed);
+        frontLeft.set(ControlMode.PercentOutput,  speed);
 
     }
 

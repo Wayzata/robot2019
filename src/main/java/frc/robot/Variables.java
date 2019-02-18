@@ -31,15 +31,15 @@ public class Variables {
     // Shoulder position for placing hatches on the low goal on CargoShip and
     // RocketShip
     // This position is also used for picking up hatches from PlayerStation
-    public static final double hatchLow = -500;
+    public static final double hatchLow = -658;
     // Shoulder position for placing cargo on the low goal on CargoShip
-    public static final double cargoLowRocket = -600;
+    public static final double cargoLowRocket = -1815;
     // Shoulder position for placing hatches on the middle goal on RocketShip
-    public static final double hatchMidRocket = -2264;
+    public static final double hatchMidRocket = -3405;
     // Shoulder position for placing cargo on the middle goal of RocketShip
-    public static final double cargoMidRocket = -3750;
+    public static final double cargoMidRocket = -4460;
     // Shoulder position for placing cargo on CargoShip
-    public static final double cargoShip = -2500;
+    public static final double cargoShip = -2264;
 
     // Wrist Motors
     public static final int wristMotor = 7;
@@ -50,7 +50,7 @@ public class Variables {
     public static final double hatchWrist = 500;
     // Wrist position for picking up cargo from PlayerStation and placing cargo on
     // CargoShip and RocketShip
-    public static final double cargoWrist = 1000;
+    public static final double cargoWrist = 790;
 
     // Amount of time that we wrist will move backwards when resetting its position
     // to zero
@@ -58,8 +58,8 @@ public class Variables {
 
     // Motor Speeds
     public static final double shoulderSpeed = 0.8;
-    public static final double wristSpeed = 0.3;
-    public static final double wristResetSpeed = 0.1;
+    public static final double wristSpeed = 0.5;
+    public static final double wristResetSpeed = 0.5;
 
     // Buttons
     public static final int shoulderUp = 0;
@@ -74,14 +74,14 @@ public class Variables {
     public static final int intakeSolenoid = 3;
     public static final double intakeMotorSpeed = 1;
     public static final double outputMotorSpeed = 1;
-    public static final int intakeLimitSwitchPort = 5; // CHANGE THIS
+    public static final int intakeLimitSwitchPort = 8;
 
     // Climbing
     public static final int frontLongPort = 2;
     public static final int frontShortPort = 1;
-    public static final int backLongPort = 6;
+    public static final int backLongPort = 5;
     public static final int backShortPort = 4;
-    public static final int pivotPort = 5;
+    public static final int pivotPort = 6;
 
     // components
 
