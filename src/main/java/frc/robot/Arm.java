@@ -2,7 +2,6 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfigUtil;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 ///***Shoulder Stuff ***///
@@ -254,17 +253,38 @@ public class Arm {
 
     public static void checkNewWrist(){
 
+        System.out.println("NEW WRIST IS CALLED");
+
         if(!wristMoveFlag){
             return;
         }
 
-        if(currWristPos - desiredWristPos < -1 * Variables.wristError){
-            wristMotor.set(ControlMode.PercentOutput, Variables.wristSpeed);
-        } else if (currWristPos - desiredWristPos > Variables.wristError){
+        System.out.println("WE MADE IT PAST THE FLAG");
+
+        System.out.println("currWristPos: " + currWristPos);
+        System.out.println("desiredWristPos: " + desiredWristPos);
+
+        System.out.println("subtraction: " + (currWristPos - desiredWristPos));
+        System.out.println("-1 * error: " + -1 * Variables.wristError);
+
+        if(currWristPos > desiredWristPos + Variables.wristError){
+            System.out.println("CASE 1");
             wristMotor.set(ControlMode.PercentOutput, -1 * Variables.wristSpeed);
-        } else{
-            wristMotor.set(ControlMode.PercentOutput, 0);
+        } else if (currWristPos < desiredWristPos - Variables.wristError){
+            System.out.println("CASE 2");
+            wristMotor.set(ControlMode.PercentOutput, Variables.wristSpeed * .5);
         }
+
+        // if(currWristPos - desiredWristPos < -1 * Variables.wristError){
+        //     System.out.println("CASE 1");
+        //     wristMotor.set(ControlMode.PercentOutput, Variables.wristSpeed);
+        // } else if (currWristPos - desiredWristPos > Variables.wristError){
+        //     System.out.println("CASE 2");
+        //     wristMotor.set(ControlMode.PercentOutput, -1 * Variables.wristSpeed);
+        // } else{
+        //     System.out.println("CASE 3");
+        //     wristMotor.set(ControlMode.PercentOutput, 0);
+        // }
     }
 
     public static void checkNewShoulder(){

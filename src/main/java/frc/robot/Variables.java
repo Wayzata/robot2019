@@ -20,6 +20,7 @@ public class Variables {
     // Joysticks
     public static final int joyLeftPort = 0;
     public static final int joyRightPort = 1;
+    public static final int xboxPort = 2;
 
     // Shoulder Motors
     public static final int leftShoulderMotor = 5;
@@ -33,28 +34,28 @@ public class Variables {
     // Shoulder position for placing hatches on the low goal on CargoShip and
     // RocketShip
     // This position is also used for picking up hatches from PlayerStation
-    public static final double hatchLow = -658;
+    public static final double hatchLow = -100;
     // Shoulder position for placing cargo on the low goal on CargoShip
-    public static final double cargoLowRocket = -1815;
+    public static final double cargoLowRocket = -2800;
     // Shoulder position for placing hatches on the middle goal on RocketShip
     public static final double hatchMidRocket = -3405;
     // Shoulder position for placing cargo on the middle goal of RocketShip
-    public static final double cargoMidRocket = -4460;
+    public static final double cargoMidRocket = -4800;
     // Shoulder position for placing cargo on CargoShip
-    public static final double cargoShip = -2264;
+    public static final double cargoShip = -3500;
 
     // Wrist Motors
     public static final int wristMotor = 7;
     // Margin of error on the wrist
-    public static final double wristError = 300;
+    public static final double wristError = 50;
 
     // -----------------Wrist Positions-----------------------------------
     // Wrist position for picking up hatches from PlayerStation and placing hatches
     // on CargoShip and RocketShip
-    public static final double hatchWrist = 500;
+    public static final double hatchWrist = 700;//500
     // Wrist position for picking up cargo from PlayerStation and placing cargo on
     // CargoShip and RocketShip
-    public static final double cargoWrist = 790;
+    public static final double cargoWrist = 700;
 
     // Amount of time that we wrist will move backwards when resetting its position
     // to zero
@@ -62,7 +63,7 @@ public class Variables {
 
     // Motor Speeds
     public static final double shoulderSpeed = 0.8;
-    public static final double wristSpeed = 0.5;
+    public static final double wristSpeed = 0.3;
     public static final double wristResetSpeed = 0.5;
 
     // Buttons
@@ -81,10 +82,10 @@ public class Variables {
     public static final int intakeLimitSwitchPort = 8;
 
     // Climbing
-    public static final int frontLongPort = 2;
-    public static final int frontShortPort = 1;
-    public static final int backLongPort = 5;
-    public static final int backShortPort = 4;
+    public static final int frontLongPort = 0; // CHANGE BACK TO 5
+    public static final int frontShortPort = 4; //DO NOT FORGET TO CHANGE BACK TO 1
+    public static final int backLongPort = 2;
+    public static final int backShortPort = 7;
     public static final int pivotPort = 6;
 
     // components

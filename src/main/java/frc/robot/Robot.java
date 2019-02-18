@@ -1,10 +1,12 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
-import java.lang.Runtime;
 //Authors: Technical Team
 
 /*
@@ -25,7 +27,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   // Objects for the different components of the robot
-  private static Vision vision;
+  
   public static DriveTrain driveTrain;
   public static Pneumatics pneumatics;
   public static Arm arm;
@@ -33,6 +35,7 @@ public class Robot extends TimedRobot {
   public static Joysticks joysticks;
   public static Intake intake;
   public XboxController xbox= new XboxController(2);
+  public CameraServer camera = CameraServer.getInstance();
   @Override
   public void robotInit() {
     // Sets up the autonomous options on the SmartDashboard
@@ -47,14 +50,18 @@ public class Robot extends TimedRobot {
     arm = new Arm();
     climb = new Climbing();
     joysticks = new Joysticks();
-    vision = new Vision();
+
+    camera.startAutomaticCapture();
+  
     
   }
 
   @Override
   public void robotPeriodic() {
     // Test print-outs
-    arm.printShoulderPosition();
+    //arm.printWristPosition();
+    System.out.println("Wrist: " + Arm.wristMotor.getSelectedSensorPosition());
+    System.out.println("Arm: " + Arm.shoulderMotor.getSelectedSensorPosition());
     // System.out.println("Limit!: " + Arm.shoulderLimitSwitch.get());
     // climb.frontPistonUltra.ping();
     // climb.backPistonUltra.ping();
@@ -93,12 +100,14 @@ public class Robot extends TimedRobot {
     // encoder values
     Arm.updateCurrPos();
 
+    //Arm.shoulderMotor.set(ControlMode.PercentOutput, -0.5);
+
     // Updates the motor values for the shoulder and wrist
     Arm.checkShoulder();
     Arm.checkWrist();
     intake.checkFlap();
     Arm.checkWristReset();
-
+System.out.println("teleop");
     // Checks the buttons and performs the appropriate actions
     joysticks.checkButtons();
 
@@ -108,6 +117,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
+    
     
 
   }

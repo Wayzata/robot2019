@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class Pneumatics {
   
   // This variable controls the onboard compressor
-  Compressor compressor;
+  public static Compressor compressor;
 
   boolean armsOut;
   boolean shooterOut;

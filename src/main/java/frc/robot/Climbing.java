@@ -51,9 +51,9 @@ public class Climbing {
         frontUltrasonic = new Ultrasonic(4, 5);
         frontPistonUltra = new Ultrasonic(0, 1);
         backPistonUltra = new Ultrasonic(2, 3);
-        frontUltrasonic.setEnabled(true);
+        frontUltrasonic.setEnabled(false);
         frontPistonUltra.setEnabled(true);
-        backPistonUltra.setEnabled(true);
+        backPistonUltra.setEnabled(false);
         frontLong = new Solenoid(Variables.pcm, Variables.frontLongPort);
         frontShort = new Solenoid(Variables.pcm, Variables.frontShortPort);
         backLong = new Solenoid(Variables.pcm, Variables.backLongPort);
